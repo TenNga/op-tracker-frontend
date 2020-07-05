@@ -15,7 +15,7 @@ const WelcomeNote = styled.h1`
     text-transform: capitalize;
 `;
 const LoginContainer = styled.div`
-   
+   width:20rem;
 `;
 
 const LoginHeader = styled.h1`
@@ -27,17 +27,47 @@ const LoginHeader = styled.h1`
     margin-top: 9rem;
     padding: 1rem;
 `;
+
+const LoginForm = styled.form`
+    display: flex;
+    flex-direction: column;
+`;
+
+const LoginInput = styled.input`
+    text-align: center;
+    margin: 2rem auto 0 auto;
+    padding: 0 0.5rem;
+    color: ${color.primary};
+    width: 17rem;
+    height: 2rem;
+    border-radius: .2rem;
+    border: 1px solid gray;
+`;
+
+const LoginSubmit = styled.input`
+    text-align: center;
+    margin: 2rem auto 0 auto;
+    padding: 0 0.5rem;
+    color: ${color.primary};
+    font-weight:bolder;
+    text-transform: uppercase;
+    background-color: ${color.white};
+    width: 17rem;
+    height: 2rem;
+    border-radius: .2rem;
+    border: 2px solid ${color.primary};
+`;
 const Login = () => {
     return(
         <MainContainer>
             <WelcomeNote>one place to tracke all your oppotunity</WelcomeNote>
             <LoginContainer>
                 <LoginHeader>Login</LoginHeader>
-                <form>
-                    <input id="user-name" type="text" />
-                    <input id="password" type="password" />
-                    <input type="submit" value="Login" />
-                </form>
+                <LoginForm>
+                    <LoginInput id="user-name" type="text" placeholder="Username"/>
+                    <LoginInput id="password" type="password" placeholder="password"/>
+                    <LoginSubmit type="submit" value="Login" />
+                </LoginForm>
             </LoginContainer>
         </MainContainer>
     )
