@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import { text, color } from '../theme';
 
+import { useForm } from "react-hook-form";
+
 const MainContainer = styled.div`
     display: flex;
 `;
@@ -68,26 +70,43 @@ const LinkSpan = styled.span`
     font-weight: bold;
 `;
 
-const Login = ({register, setLogin}) => {
+const Login = ({clickRegister, setLogin}) => {
+
+    const { register, handleSubmit} = useForm();
+
+    const onSubmit = data => {
+        fetch("http://localhost:3000/login", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+                "Accepts": "application/json",
+            },
+            body: JSON.stringify(data)
+        }).then(resp => resp.json())
+        .then(data => {
+            data.errors? alert(data.errors) : console.log(data);
+        })
+    };
 
     return(
         <MainContainer>
             <WelcomeNote>one place to tracke all your oppotunity</WelcomeNote>
             <LoginContainer>
-                <LoginHeader>{register? "register" : "Login" }</LoginHeader>
-                <LoginForm>
-                    <LoginInput id="user-name" type="text" placeholder="Username"/>
-                    <LoginInput id="password" type="password" placeholder="password"/>
-                    {register?
+
+                <LoginHeader>{clickRegister? "register" : "Login" }</LoginHeader>
+
+                <LoginForm onSubmit={handleSubmit(onSubmit)}>
+                    <LoginInput name="username" type="text" placeholder="Username" ref={register}/>
+                    <LoginInput name="password" type="password" placeholder="password" ref={register}/>
+                    {clickRegister?
                     <>
-                    <LoginInput id="confirmPassword" type="password" placeholder="Confirm password"/> 
+                    <LoginInput name="confirmPassword" type="password" placeholder="Confirm password" ref={register}/> 
                     <LoginSubmit type="submit" value="Sign Up" />
                     <Text>Already have an accout? <LinkSpan>SignIn</LinkSpan></Text>
                     </>:
                     <LoginSubmit type="submit" value="Login" />}
-
-                    
                 </LoginForm>
+
             </LoginContainer>
         </MainContainer>
     )
