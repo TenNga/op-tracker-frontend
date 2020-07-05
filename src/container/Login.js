@@ -75,17 +75,22 @@ const Login = ({clickRegister, setLogin}) => {
     const { register, handleSubmit} = useForm();
 
     const onSubmit = data => {
-        fetch("http://localhost:3000/login", {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json",
-                "Accepts": "application/json",
-            },
-            body: JSON.stringify(data)
-        }).then(resp => resp.json())
-        .then(data => {
-            data.errors? alert(data.errors) : console.log(data);
-        })
+        console.log("Register Status", clickRegister)
+        if(!clickRegister){
+            fetch("http://localhost:3000/login", {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accepts": "application/json",
+                },
+                body: JSON.stringify(data)
+            }).then(resp => resp.json())
+            .then(data => {
+                data.errors? alert(data.errors) : console.log(data);
+            })
+        } else {
+            console.log(data)
+        }
     };
 
     return(
