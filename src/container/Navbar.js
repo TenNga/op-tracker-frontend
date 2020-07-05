@@ -11,6 +11,7 @@ const NavBarContainer = styled.div`
 `;
 
 const NavHeader = styled.h1`
+    margin-left: 6rem;
     font-size: ${text.heading.xsmall};
     color: ${color.white};
     text-transform: uppercase;
