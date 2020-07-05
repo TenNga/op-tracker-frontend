@@ -25,7 +25,7 @@ const LoginHeader = styled.h1`
     border: 1px solid ${color.primary};
     border-radius: 7px 7px 0px 0px;
     margin-top: 9rem;
-    padding: 1rem;
+    padding: 0.5rem;
 `;
 
 const LoginForm = styled.form`
@@ -57,16 +57,36 @@ const LoginSubmit = styled.input`
     border-radius: .2rem;
     border: 2px solid ${color.primary};
 `;
-const Login = () => {
+
+const Text = styled.p`
+    color: ${color.primary};
+    text-align: center;
+    margin: 1rem;
+`;
+
+const LinkSpan = styled.span`
+    font-weight: bold;
+`;
+
+const Login = ({register, setLogin}) => {
+
     return(
         <MainContainer>
             <WelcomeNote>one place to tracke all your oppotunity</WelcomeNote>
             <LoginContainer>
-                <LoginHeader>Login</LoginHeader>
+                <LoginHeader>{register? "register" : "Login" }</LoginHeader>
                 <LoginForm>
                     <LoginInput id="user-name" type="text" placeholder="Username"/>
                     <LoginInput id="password" type="password" placeholder="password"/>
-                    <LoginSubmit type="submit" value="Login" />
+                    {register?
+                    <>
+                    <LoginInput id="confirmPassword" type="password" placeholder="Confirm password"/> 
+                    <LoginSubmit type="submit" value="Sign Up" />
+                    <Text>Already have an accout? <LinkSpan>SignIn</LinkSpan></Text>
+                    </>:
+                    <LoginSubmit type="submit" value="Login" />}
+
+                    
                 </LoginForm>
             </LoginContainer>
         </MainContainer>

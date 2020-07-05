@@ -28,13 +28,14 @@ const Text = styled.li`
     margin-right: 6rem;
 `;
 
-const Navbar = () => {
+const Navbar = ({setRegister, login}) => {
     return(
         <NavBarContainer>
             <NavHeader>Oppotunity Tracker</NavHeader>
             <Menu>
                     <Text>About Us</Text>
-                    <Text>Login</Text>
+                    {login? null:
+                    <Text onClick={()=> setRegister(true)}>Register</Text> }
             </Menu>
         </NavBarContainer>
     )

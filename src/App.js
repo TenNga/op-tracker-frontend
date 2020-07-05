@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import './App.css';
 
 import Navbar from './container/Navbar';
 import Login from './container/Login';
+import Register from './container/Register';
 
 import styled from 'styled-components';
 
@@ -11,10 +12,19 @@ const AppContainer = styled.div`
 `;
 
 function App() {
+
+  const [login, setLogin] = useState(false);
+  const [register, setRegister] = useState(false);
+
   return (
     <AppContainer>
-      <Navbar />
-      <Login />
+      <Navbar login={login} setRegister={setRegister} />
+      {!login?
+      <Login register = {register} setLogin = {setLogin} />
+      :
+      <Register />
+    }
+
     </AppContainer>
   );
 }
