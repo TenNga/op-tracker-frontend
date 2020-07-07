@@ -78,7 +78,7 @@ const Login = ({clickRegister, setLogin}) => {
         console.log("Register Status", clickRegister)
         if(!clickRegister){
             fetch("http://localhost:3000/login", {
-                method: "post",
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "Accepts": "application/json",
@@ -89,7 +89,20 @@ const Login = ({clickRegister, setLogin}) => {
                 data.errors? alert(data.errors) : console.log(data);
             })
         } else {
-            console.log(data)
+            fetch("http://localhost:3000/users", {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                "Accepts": "application/json"
+                },
+                body: JSON.stringify({
+                user_name: data.username,
+                password: data.password,
+                role: data.role
+                })
+                })
+            .then(resp=>resp.json()) //only if you want to get the data back
+            .then(console.log)
         }
     };
 
@@ -106,6 +119,7 @@ const Login = ({clickRegister, setLogin}) => {
                     {clickRegister?
                     <>
                     <LoginInput name="confirmPassword" type="password" placeholder="Confirm password" ref={register}/> 
+                    <LoginInput name="role" type="text" placeholder="Role" ref={register}/> 
                     <LoginSubmit type="submit" value="Sign Up" />
                     <Text>Already have an accout? <LinkSpan>SignIn</LinkSpan></Text>
                     </>:
