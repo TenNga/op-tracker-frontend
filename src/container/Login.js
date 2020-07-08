@@ -70,9 +70,14 @@ const LinkSpan = styled.span`
     font-weight: bold;
 `;
 
+const ErrorMsg = styled.p`
+    text-align: center;
+    color: red;
+`;
+
 const Login = ({clickRegister, setLogin}) => {
 
-    const { register, handleSubmit} = useForm();
+    const { register, handleSubmit, watch, errors} = useForm();
 
     const onSubmit = data => {
         console.log("Register Status", clickRegister)
@@ -114,12 +119,25 @@ const Login = ({clickRegister, setLogin}) => {
                 <LoginHeader>{clickRegister? "register" : "Login" }</LoginHeader>
 
                 <LoginForm onSubmit={handleSubmit(onSubmit)}>
-                    <LoginInput name="username" type="text" placeholder="Username" ref={register}/>
-                    <LoginInput name="password" type="password" placeholder="password" ref={register}/>
+                    
+                    <LoginInput name="username" type="text" placeholder="Username" ref={register({required: true})}/>
+                    {errors.username && <ErrorMsg>Required Field!</ErrorMsg>}
+
+                    <LoginInput name="password" type="password" placeholder="password" ref={register({required: true, minLength: 6})}/>
+                    {errors.password && errors.password.type === "required" && <ErrorMsg>Password must not be empty!</ErrorMsg>}
+                    {errors.password && errors.password.type === "minLength" && <ErrorMsg>Minimum length 6!</ErrorMsg>}
                     {clickRegister?
                     <>
-                    <LoginInput name="confirmPassword" type="password" placeholder="Confirm password" ref={register}/> 
-                    <LoginInput name="role" type="text" placeholder="Role" ref={register}/> 
+                    <LoginInput name="confirmPassword" type="password" placeholder="Confirm password" ref={register({
+                        validate: (value) => {
+                            return value === watch('password'); // value is from password2 and watch will return value from password1
+                          }
+                    })}/> 
+                    {errors.confirmPassword && <ErrorMsg>Password need to be same!</ErrorMsg>}
+
+                    <LoginInput name="role" type="text" placeholder="Role" ref={register({required: true})}/> 
+                    {errors.username && <ErrorMsg>Required Field!</ErrorMsg>}
+
                     <LoginSubmit type="submit" value="Sign Up" />
                     <Text>Already have an accout? <LinkSpan>SignIn</LinkSpan></Text>
                     </>:
