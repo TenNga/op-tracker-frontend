@@ -20,7 +20,7 @@ function App() {
     <AppContainer>
       <Navbar login={login} setRegister={setRegister} />
       {!login?
-      <Login clickRegister = {register} setLogin = {setLogin} />
+      <Login clickRegister = {register} setRegister = {setRegister} setLogin = {setLogin} />
       :
       <Register />
     }

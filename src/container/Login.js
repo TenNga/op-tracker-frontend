@@ -75,7 +75,7 @@ const ErrorMsg = styled.p`
     color: red;
 `;
 
-const Login = ({clickRegister, setLogin}) => {
+const Login = ({clickRegister, setRegister, setLogin}) => {
 
     const { register, handleSubmit, watch, errors} = useForm();
 
@@ -139,7 +139,7 @@ const Login = ({clickRegister, setLogin}) => {
                     {errors.username && <ErrorMsg>Required Field!</ErrorMsg>}
 
                     <LoginSubmit type="submit" value="Sign Up" />
-                    <Text>Already have an accout? <LinkSpan>SignIn</LinkSpan></Text>
+                    <Text>Already have an accout? <LinkSpan onClick={()=> setRegister(false)}>SignIn</LinkSpan></Text>
                     </>:
                     <LoginSubmit type="submit" value="Login" />}
                 </LoginForm>
