@@ -92,7 +92,7 @@ const Login = ({clickRegister, setRegister, setLogin}) => {
                 body: JSON.stringify(data)
             }).then(resp => resp.json())
             .then(data => {
-                data.errors? alert(data.errors) : console.log(data);
+                data.errors? alert(data.errors) : setLogin(true);
             })
         } else {
             fetch("http://localhost:3000/users", {

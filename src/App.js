@@ -3,9 +3,9 @@ import './App.css';
 
 import Navbar from './container/Navbar';
 import Login from './container/Login';
-import Register from './container/Register';
 
 import styled from 'styled-components';
+import ListContainer from './container/ListContainer';
 
 const AppContainer = styled.div`
   font-family: 'Rubik', sans-serif;
@@ -19,11 +19,11 @@ function App() {
   return (
     <AppContainer>
       <Navbar login={login} setRegister={setRegister} />
-      {!login?
+      {/* {!login?
       <Login clickRegister = {register} setRegister = {setRegister} setLogin = {setLogin} />
-      :
-      <Register />
-    }
+      : */}
+      <ListContainer />
+    {/* } */}
 
     </AppContainer>
   );
