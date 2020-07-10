@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState}  from 'react';
 
 import styled from 'styled-components';
 import {color} from '../theme';
+import NewListModal from '../components/css/NewListModal';
 
 const MainContainer = styled.div`
 
@@ -52,8 +53,11 @@ const AddBtn = styled.button`
 
 const ListContainer = () => {
 
+    const [modal, setModal] = useState(false);
+
     return(
         <MainContainer>
+            {modal? <NewListModal /> : null}
             <TopSection>
                 <SearchContainer>
                     <SearchInput name="name" type="text" placeholder="Search" />
@@ -61,7 +65,7 @@ const ListContainer = () => {
                         Submit
                     </SearchBtn>
                 </SearchContainer>
-                <AddBtn>
+                <AddBtn onClick={()=>setModal(true)}>
                     +
                 </AddBtn>
             </TopSection>
