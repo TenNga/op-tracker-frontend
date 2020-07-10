@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 
 const MainContainer = styled.div`
     display: flex;
+    justify-content: space-around;
 `;
 
 const WelcomeNote = styled.h1`
