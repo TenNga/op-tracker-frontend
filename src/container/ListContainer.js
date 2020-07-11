@@ -1,8 +1,10 @@
-import React, {useState}  from 'react';
+import React, {useState, useEffect}  from 'react';
 
 import styled from 'styled-components';
 import {color} from '../theme';
-import NewListModal from '../components/css/NewListModal';
+import NewListModal from '../components/NewListModal';
+import NewJob from '../components/NewJob';
+import { render } from '@testing-library/react';
 
 const MainContainer = styled.div`
 
@@ -51,13 +53,41 @@ const AddBtn = styled.button`
     border-style: none;
 `;
 
-const ListContainer = () => {
+const JobContainer = styled.div`
+    display: grid;
+    grid-temple-column: repeat(5,1fr);
+`;
+
+const ListContainer = ({user,jobs, setJobs}) => {
 
     const [modal, setModal] = useState(false);
 
+    const renderJobCard = () => {
+        console.log(jobs);
+        if(jobs)
+            return jobs.map(job => <NewJob job={job} key={job.id} />)
+    }
+
+    useEffect(()=> {
+        if(user){
+            fetch(`http://localhost:3000/users/${user.id}`)
+            .then(resp => resp.json())
+            .then(data=>setJobs(data.jobs))
+        }
+    }, []);
+
+    const renderJob = () => {
+        console.log("Use Effect")
+        if(user){
+            fetch(`http://localhost:3000/users/${user.id}`)
+            .then(resp => resp.json())
+            .then(data=>setJobs(data.jobs))
+        }
+    }
+
     return(
         <MainContainer>
-            {modal? <NewListModal setModal={setModal} /> : null}
+            {modal? <NewListModal setModal={setModal} user={user} /> : null}
             <TopSection>
                 <SearchContainer>
                     <SearchInput name="name" type="text" placeholder="Search" />
@@ -69,6 +99,9 @@ const ListContainer = () => {
                     +
                 </AddBtn>
             </TopSection>
+            <JobContainer>
+            { renderJobCard() }
+            </JobContainer>
         </MainContainer>
     )
 }

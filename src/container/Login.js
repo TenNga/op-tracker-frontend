@@ -76,7 +76,7 @@ const ErrorMsg = styled.p`
     color: red;
 `;
 
-const Login = ({clickRegister, setRegister, setLogin}) => {
+const Login = ({clickRegister, setRegister, setUser}) => {
 
     const { register, handleSubmit, watch, errors} = useForm();
 
@@ -92,7 +92,7 @@ const Login = ({clickRegister, setRegister, setLogin}) => {
                 body: JSON.stringify(data)
             }).then(resp => resp.json())
             .then(data => {
-                data.errors? alert(data.errors) : setLogin(true);
+                data.errors? alert(data.errors) : setUser(data);
             })
         } else {
             fetch("http://localhost:3000/users", {
@@ -108,7 +108,7 @@ const Login = ({clickRegister, setRegister, setLogin}) => {
                 })
                 })
             .then(resp=>resp.json()) //only if you want to get the data back
-            .then(console.log)
+            .then(setUser)
         }
     };
 

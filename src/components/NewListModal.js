@@ -1,5 +1,5 @@
 import React from 'react';
-import {color} from '../../theme';
+import {color} from "../theme";
 
 import styled from 'styled-components';
 import { useForm } from "react-hook-form";
@@ -19,12 +19,13 @@ const ModalContainer = styled.div`
 const NewListForm = styled.form`
     display: flex;
     flex-direction: column;
-    margin: 0rem 15rem;
+    margin: 0rem auto;
 `;
 
 const ListInput = styled.input`
-    margin: 1rem 0rem;
+    margin: 1rem auto;
     border-style: none;
+    width: 50%;
     height: 2rem;
     border-radius: 0.5rem;
     padding: 0.5rem;
@@ -32,7 +33,7 @@ const ListInput = styled.input`
 `;
 
 const DateInput = styled.input`
-    margin: 1rem 0rem;
+    margin: 1rem auto;
     width: 50%;
     border-style: none;
     height: 2rem;
@@ -43,18 +44,19 @@ const DateInput = styled.input`
 
 const ListTextarea = styled.textarea`
     background-color: ${color.white};
-    margin: 1rem 0rem;
+    width: 50%;
+    margin: 1rem auto;
     border-radius: 0.5rem;
     padding: 0.5rem;
 `;
 
 const BtnContainer = styled.div`
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 `;
 
 const SaveBtn = styled.input`
-    margin: 1rem 5rem;
+    margin: 1rem 1rem;
     width: 6rem;
     height: 2rem;
     border-style: none;
