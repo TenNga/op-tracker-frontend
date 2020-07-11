@@ -57,7 +57,7 @@ const ListContainer = () => {
 
     return(
         <MainContainer>
-            {modal? <NewListModal /> : null}
+            {modal? <NewListModal setModal={setModal} /> : null}
             <TopSection>
                 <SearchContainer>
                     <SearchInput name="name" type="text" placeholder="Search" />
