@@ -92,7 +92,12 @@ const Login = ({clickRegister, setRegister, setUser}) => {
                 body: JSON.stringify(data)
             }).then(resp => resp.json())
             .then(data => {
-                data.errors? alert(data.errors) : setUser(data);
+                if(data.errors) 
+                    alert(data.errors);
+                else{
+                    setUser(data);
+                    localStorage.setItem("user_id", data.id);
+                };
             })
         } else {
             fetch("http://localhost:3000/users", {
@@ -108,7 +113,14 @@ const Login = ({clickRegister, setRegister, setUser}) => {
                 })
                 })
             .then(resp=>resp.json()) //only if you want to get the data back
-            .then(setUser)
+            .then(data => {
+                if(data.errors) 
+                    alert(data.errors);
+                else{
+                    setUser(data);
+                    localStorage.setItem("user_id", data.id);
+                };
+            })
         }
     };
 

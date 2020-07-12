@@ -55,10 +55,10 @@ const AddBtn = styled.button`
 
 const JobContainer = styled.div`
     display: grid;
-    grid-temple-column: repeat(5,1fr);
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
 `;
 
-const ListContainer = ({user,jobs, setJobs}) => {
+const ListContainer = ({jobs, setJobs}) => {
 
     const [modal, setModal] = useState(false);
 
@@ -69,25 +69,17 @@ const ListContainer = ({user,jobs, setJobs}) => {
     }
 
     useEffect(()=> {
-        if(user){
-            fetch(`http://localhost:3000/users/${user.id}`)
+        if(localStorage.getItem("user_id")){
+            fetch(`http://localhost:3000/users/${localStorage.getItem("user_id")}`)
             .then(resp => resp.json())
             .then(data=>setJobs(data.jobs))
         }
     }, []);
 
-    const renderJob = () => {
-        console.log("Use Effect")
-        if(user){
-            fetch(`http://localhost:3000/users/${user.id}`)
-            .then(resp => resp.json())
-            .then(data=>setJobs(data.jobs))
-        }
-    }
 
     return(
         <MainContainer>
-            {modal? <NewListModal setModal={setModal} user={user} /> : null}
+            {modal? <NewListModal setModal={setModal} setJobs={setJobs} jobs={jobs}/> : null}
             <TopSection>
                 <SearchContainer>
                     <SearchInput name="name" type="text" placeholder="Search" />

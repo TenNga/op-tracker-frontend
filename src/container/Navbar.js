@@ -34,7 +34,8 @@ const Navbar = ({setRegister, login}) => {
             <NavHeader>Oppotunity Tracker</NavHeader>
             <Menu>
                     <Text>About Us</Text>
-                    {login? null:
+                    {localStorage.getItem("user_id")? 
+                    <Text onCLick={()=> localStorage.removeItem("user_id")}>Logout</Text>:
                     <Text onClick={()=> setRegister(true)}>Register</Text> }
             </Menu>
         </NavBarContainer>

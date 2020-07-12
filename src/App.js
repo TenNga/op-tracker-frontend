@@ -15,17 +15,17 @@ function App() {
 
   const [login, setLogin] = useState(false);
   const [register, setRegister] = useState(false);
-  const [user, setUser] = useState("");
   const [jobs, setJobs] = useState("");
+  const [user,setUser] = useState("");
 
 
   return (
     <AppContainer>
       <Navbar login={login} setRegister={setRegister} />
-      {!user?
-      <Login clickRegister = {register} setRegister = {setRegister} setUser = {setUser} />
+      {!localStorage.getItem("user_id")?
+      <Login clickRegister = {register} setRegister = {setRegister} setUser={setUser} />
       :
-      <ListContainer user={user} jobs={jobs} setJobs={setJobs} />
+      <ListContainer jobs={jobs} setJobs={setJobs} />
     }
 
     </AppContainer>

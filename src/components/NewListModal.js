@@ -82,12 +82,28 @@ const CancelBtn = styled.button`
 `;
 
 
-const NewListModal = ({setModal}) => {
+const NewListModal = ({setModal,setJobs,jobs}) => {
 
     const { register, handleSubmit, errors} = useForm();
 
     const onSubmit = data => {
-        console.log(data);
+        fetch("http://localhost:3000/jobs", {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                "Accepts": "application/json"
+                },
+                body: JSON.stringify({...data,user_id: localStorage.getItem("user_id")})
+                })
+            .then(resp=>resp.json()) //only if you want to get the data back
+            .then(data => {
+                if(data.errors) 
+                    alert(data.errors);
+                else{
+                    setJobs([...jobs,data]);
+                    setModal(false);
+                };
+            })
     }
 
     return(
@@ -99,7 +115,7 @@ const NewListModal = ({setModal}) => {
                 <ListInput name="Link" type="text" placeholder="Link to the job description" ref={register({required: true})}/>
                 <DateInput name="date" type="date" placeholder="Date Applied" ref={register({required: true})}/>
                 <ListInput name="status" type="text" placeholder="Status" ref={register({required: true})}/>
-                <ListTextarea name="note" type="text" placeholder="Description" />
+                <ListTextarea name="note" type="text" placeholder="Description" ref={register()}/>
                 <BtnContainer>
                     <CancelBtn onClick={()=>setModal(false)}>Cancel</CancelBtn>
                     <SaveBtn type="submit" value="save" />
