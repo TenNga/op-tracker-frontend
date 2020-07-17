@@ -56,6 +56,8 @@ const AddBtn = styled.button`
 const JobContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    margin: 1rem 5rem;
+
 `;
 
 const ListContainer = ({jobs, setJobs}) => {

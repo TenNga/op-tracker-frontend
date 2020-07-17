@@ -35,7 +35,7 @@ const Navbar = ({setRegister, login}) => {
             <Menu>
                     <Text>About Us</Text>
                     {localStorage.getItem("user_id")? 
-                    <Text onCLick={()=> localStorage.removeItem("user_id")}>Logout</Text>:
+                    <Text onClick={()=> localStorage.removeItem("user_id")}>Logout</Text>:
                     <Text onClick={()=> setRegister(true)}>Register</Text> }
             </Menu>
         </NavBarContainer>

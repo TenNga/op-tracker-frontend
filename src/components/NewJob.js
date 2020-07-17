@@ -2,7 +2,12 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import {color} from '../theme';
+import { IoMdCloseCircleOutline } from "react-icons/io";
+{/* <ion-icon name="trash-outline"></ion-icon> */}
+
 const NewJobCard = styled.div`
+    position: relative;
     margin: 1rem;
     width: 17rem;
     padding 0.5rem;
@@ -31,14 +36,47 @@ const Note = styled.p`
     margin-top: 1rem;
 `;
 
+const StatusSuccess = styled.h6`
+    text-align: center;
+    font-size: 1rem;
+    color: blue;
+`;
+
+const StatusReject = styled.h6`
+    text-align: center;
+    font-size: 1rem;
+    color: red;
+`;
+
+const StatusHold = styled.h6`
+    text-align: center;
+    font-size: 1rem;
+    color: green;
+`;
+
+const Cross = styled.div`
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    cursor: pointer;
+`;
+
 const NewJob = ({job}) => {
+
+    const handleClose = () => {
+        
+    }
     return(
         <NewJobCard>
             <Title>{job.company}</Title>
+            <Cross onClick={}><IoMdCloseCircleOutline /></Cross>
             <Role>{job.role} </Role>
-            <Date>Date</Date>
-            <Link href="">Link to application.</Link>
+            <Date>{job.date}</Date>
+            <Link href={job.link}>Link to application.</Link>
             <Note>Descriptiondlsdfs sdf jlsdjf lmvl smvl ldflsdfs </Note>
+            {job.status === "Rejected"? <StatusReject>{job.status}</StatusReject> : 
+                job.status === "Waiting"? <StatusHold>{job.status}</StatusHold> : 
+                    <StatusSuccess>{job.status}</StatusSuccess>}
         </NewJobCard>
     )
 }
