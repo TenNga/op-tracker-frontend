@@ -67,7 +67,12 @@ const ListContainer = ({jobs, setJobs}) => {
     const renderJobCard = () => {
         console.log(jobs);
         if(jobs)
-            return jobs.map(job => <NewJob job={job} key={job.id} />)
+            return jobs.map(job => <NewJob job={job} key={job.id} deleteJob={deleteJob} />)
+    }
+
+    const deleteJob = (jobId) => {
+        const remainingJob = jobs.filter(job => job.id !== jobId);
+        setJobs(remainingJob);
     }
 
     useEffect(()=> {

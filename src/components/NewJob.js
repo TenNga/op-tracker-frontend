@@ -25,12 +25,18 @@ const Role = styled.h5`
 const Date = styled.h5`
     margin-top: 1rem;
 `;
-const Link = styled.button`
-    border-style: none;
-    padding: 0.5rem;
-    border-radius: 1rem;
+const Link = styled.a`
+    display: inline-block;
+    text-decoration: none;
+    background-color: ${color.secondary};
+    color: ${color.primary};
+    text-transform: uppercase;
+    font-size: 0.8rem;
     font-weight: bold;
+    padding: 0.4rem;
+    border-radius: 1rem;
     margin-top: 1rem;
+    cursor: pointer;
 `;
 const Note = styled.p`
     margin-top: 1rem;
@@ -46,12 +52,14 @@ const StatusReject = styled.h6`
     text-align: center;
     font-size: 1rem;
     color: red;
+    margin-top: 0.5rem;
 `;
 
 const StatusHold = styled.h6`
     text-align: center;
     font-size: 1rem;
     color: green;
+    margin-top: 0.5rem;
 `;
 
 const Cross = styled.div`
@@ -59,23 +67,39 @@ const Cross = styled.div`
     right: 0.5rem;
     top: 0.5rem;
     cursor: pointer;
+    margin-top: 0.5rem;
 `;
 
-const NewJob = ({job}) => {
+const NewJob = ({job,deleteJob}) => {
 
     const handleClose = () => {
-        
+        fetch(`http://localhost:3000/jobs/${job.id}`,{
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accepts": "application/json"
+            }
+        })
+        .then(resp => resp.json())
+        .then(data=>{
+            //if job is not able to delete alert, otherwise delete from frontend.
+            if(data.success)
+                deleteJob(job.id);
+            else 
+                alert(data.errors);
+        }) 
     }
+
     return(
         <NewJobCard>
             <Title>{job.company}</Title>
-            <Cross onClick={}><IoMdCloseCircleOutline /></Cross>
+            <Cross onClick={handleClose}><IoMdCloseCircleOutline /></Cross>
             <Role>{job.role} </Role>
             <Date>{job.date}</Date>
-            <Link href={job.link}>Link to application.</Link>
-            <Note>Descriptiondlsdfs sdf jlsdjf lmvl smvl ldflsdfs </Note>
-            {job.status === "Rejected"? <StatusReject>{job.status}</StatusReject> : 
-                job.status === "Waiting"? <StatusHold>{job.status}</StatusHold> : 
+            <Link href={job.link}>Link to application</Link>
+            <Note>{job.note}</Note>
+            {job.status.toUpperCase() === "REJECTED"? <StatusReject>{job.status.toUpperCase()}</StatusReject> : 
+                job.status.toUpperCase() === "WAITING"? <StatusHold>{job.status.toUpperCase()}</StatusHold> : 
                     <StatusSuccess>{job.status}</StatusSuccess>}
         </NewJobCard>
     )

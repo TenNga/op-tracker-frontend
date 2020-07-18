@@ -112,7 +112,7 @@ const NewListModal = ({setModal,setJobs,jobs}) => {
             <NewListForm onSubmit={handleSubmit(onSubmit)}>
                 <ListInput name="company" type="text" placeholder="Company Name" ref={register({required: true})}/>
                 <ListInput name="role" type="text" placeholder="Role" ref={register({required: true})}/>
-                <ListInput name="Link" type="text" placeholder="Link to the job description" ref={register({required: true})}/>
+                <ListInput name="link" type="text" placeholder="Link to the job description" ref={register({required: true})}/>
                 <DateInput name="date" type="date" placeholder="Date Applied" ref={register({required: true})}/>
                 <ListInput name="status" type="text" placeholder="Status" ref={register({required: true})}/>
                 <ListTextarea name="note" type="text" placeholder="Description" ref={register()}/>
