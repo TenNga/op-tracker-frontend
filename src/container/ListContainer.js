@@ -63,18 +63,31 @@ const JobContainer = styled.div`
 const ListContainer = ({jobs, setJobs}) => {
 
     const [modal, setModal] = useState(false);
+    const [filterJobs, setFilterJobs] = useState([]);
+
 
     const renderJobCard = () => {
-        console.log(jobs);
-        if(jobs)
+        //if no search result then display all the jobs
+        if(filterJobs.length > 0)
+            return filterJobs.map(job => <NewJob job={job} key={job.id} deleteJob={deleteJob} />)
+        else if(jobs)
             return jobs.map(job => <NewJob job={job} key={job.id} deleteJob={deleteJob} />)
     }
 
+    //given the id of the job, delete the job from state
     const deleteJob = (jobId) => {
         const remainingJob = jobs.filter(job => job.id !== jobId);
         setJobs(remainingJob);
     }
 
+    //execute this function on every changes
+    const handleOnChange= e => {
+        console.log("value: ", e.target.value);
+        const result = jobs.filter(job => job.company.toUpperCase().includes(e.target.value.toUpperCase()));
+        setFilterJobs(result);
+    }
+
+    //componentDidMount, execute only once
     useEffect(()=> {
         if(localStorage.getItem("user_id")){
             fetch(`http://localhost:3000/users/${localStorage.getItem("user_id")}`)
@@ -89,7 +102,8 @@ const ListContainer = ({jobs, setJobs}) => {
             {modal? <NewListModal setModal={setModal} setJobs={setJobs} jobs={jobs}/> : null}
             <TopSection>
                 <SearchContainer>
-                    <SearchInput name="name" type="text" placeholder="Search" />
+                    <SearchInput name="name" type="text" placeholder="Search" 
+                    onChange={handleOnChange} />
                     <SearchBtn>
                         Submit
                     </SearchBtn>
