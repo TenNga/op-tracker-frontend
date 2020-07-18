@@ -64,10 +64,9 @@ const StatusHold = styled.h6`
 
 const Cross = styled.div`
     position: absolute;
-    right: 0.5rem;
-    top: 0.5rem;
+    right: 0rem;
+    top: 0rem;
     cursor: pointer;
-    margin-top: 0.5rem;
 `;
 
 const NewJob = ({job,deleteJob}) => {
@@ -93,11 +92,11 @@ const NewJob = ({job,deleteJob}) => {
     return(
         <NewJobCard>
             <Title>{job.company}</Title>
-            <Cross onClick={handleClose}><IoMdCloseCircleOutline /></Cross>
-            <Role>{job.role} </Role>
-            <Date>{job.date}</Date>
-            <Link href={job.link}>Link to application</Link>
-            <Note>{job.note}</Note>
+            <Cross onClick={handleClose}><IoMdCloseCircleOutline size={30} /></Cross>
+            <Role>Role: {job.role} </Role>
+            <Date>Applied on: {job.date}</Date>
+            <Link href={job.link} target="_blank">Link to application</Link>
+            <Note>Note: {job.note}</Note>
             {job.status.toUpperCase() === "REJECTED"? <StatusReject>{job.status.toUpperCase()}</StatusReject> : 
                 job.status.toUpperCase() === "WAITING"? <StatusHold>{job.status.toUpperCase()}</StatusHold> : 
                     <StatusSuccess>{job.status}</StatusSuccess>}
