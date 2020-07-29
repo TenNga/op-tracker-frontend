@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {color} from '../theme';
-import { IoMdCloseCircleOutline } from "react-icons/io";
+import { IoMdCloseCircleOutline, IoMdCreate } from "react-icons/io";
 {/* <ion-icon name="trash-outline"></ion-icon> */}
 
 const NewJobCard = styled.div`
@@ -62,7 +62,7 @@ const StatusHold = styled.h6`
     margin-top: 0.5rem;
 `;
 
-const Cross = styled.div`
+const Action = styled.div`
     position: absolute;
     right: 0rem;
     top: 0rem;
@@ -76,7 +76,7 @@ const Status = styled.div`
     padding: 0.5rem;
 `;
 
-const NewJob = ({job,deleteJob,bgc}) => {
+const NewJob = ({job,deleteJob,handleUpdate,bgc}) => {
 
     const handleClose = () => {
         fetch(`http://localhost:3000/jobs/${job.id}`,{
@@ -96,10 +96,12 @@ const NewJob = ({job,deleteJob,bgc}) => {
         }) 
     }
 
+
     return(
         <NewJobCard style={{backgroundColor: bgc}}>
             <Title>{job.company}</Title>
-            <Cross onClick={handleClose}><IoMdCloseCircleOutline size={30} /></Cross>
+            <Action><IoMdCreate onClick={handleUpdate} size={30}/><IoMdCloseCircleOutline onClick={handleClose} size={30} /></Action>
+
             <Role>Role: {job.role} </Role>
             <Date>Applied on: {job.date}</Date>
             <Link href={job.link} target="_blank">Link to application</Link>
@@ -109,6 +111,7 @@ const NewJob = ({job,deleteJob,bgc}) => {
                                 job.status.toUpperCase() === "WAITING"? <StatusHold>{job.status.toUpperCase()}</StatusHold> : 
                                     <StatusSuccess>{job.status.toUpperCase()}</StatusSuccess>}
             </Status>
+            
             
         </NewJobCard>
     )
