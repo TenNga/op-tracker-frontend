@@ -71,7 +71,7 @@ const ListContainer = ({jobs, setJobs}) => {
         if(filterJobs.length > 0)
             return filterJobs.map(job => <NewJob job={job} key={job.id} deleteJob={deleteJob} />)
         else if(jobs)
-            return jobs.map(job => <NewJob job={job} key={job.id} deleteJob={deleteJob} />)
+            return jobs.map(job => <NewJob job={job} key={job.id} deleteJob={deleteJob} bgc={color.mix[parseInt(Math.random()*5)]} />)
     }
 
     //given the id of the job, delete the job from state

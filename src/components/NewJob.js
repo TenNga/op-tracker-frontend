@@ -76,7 +76,7 @@ const Status = styled.div`
     padding: 0.5rem;
 `;
 
-const NewJob = ({job,deleteJob}) => {
+const NewJob = ({job,deleteJob,bgc}) => {
 
     const handleClose = () => {
         fetch(`http://localhost:3000/jobs/${job.id}`,{
@@ -97,7 +97,7 @@ const NewJob = ({job,deleteJob}) => {
     }
 
     return(
-        <NewJobCard>
+        <NewJobCard style={{backgroundColor: bgc}}>
             <Title>{job.company}</Title>
             <Cross onClick={handleClose}><IoMdCloseCircleOutline size={30} /></Cross>
             <Role>Role: {job.role} </Role>

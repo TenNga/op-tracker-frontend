@@ -3,7 +3,8 @@ const color = {
     "secondary" : "#C2EDCE",
     "sky-blue" : "#BADFE7",
     "lake" : "#6FB3B8",
-    "white" : "#F6F6F2"
+    "white" : "#F6F6F2",
+    "mix" : ["#388087","#C2EDCE","#BADFE7","#6FB3B8","#F6F6F2"]
 }
 
 const text = {
