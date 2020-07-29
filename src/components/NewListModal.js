@@ -14,6 +14,7 @@ const ModalContainer = styled.div`
     left: 0;
     color: ${color.white};
     background-color: rgb(56, 128, 135,0.8);
+    z-index: 4;
 `;
 
 const NewListForm = styled.form`
@@ -23,6 +24,16 @@ const NewListForm = styled.form`
 `;
 
 const ListInput = styled.input`
+    margin: 1rem auto;
+    border-style: none;
+    width: 50%;
+    height: 2rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: ${color.white};
+`;
+
+const StatusOption = styled.select`
     margin: 1rem auto;
     border-style: none;
     width: 50%;
@@ -114,7 +125,11 @@ const NewListModal = ({setModal,setJobs,jobs}) => {
                 <ListInput name="role" type="text" placeholder="Role" ref={register({required: true})}/>
                 <ListInput name="link" type="text" placeholder="Link to the job description" ref={register({required: true})}/>
                 <DateInput name="date" type="date" placeholder="Date Applied" ref={register({required: true})}/>
-                <ListInput name="status" type="text" placeholder="Status" ref={register({required: true})}/>
+                <StatusOption name="status" ref={register}>
+                    <option value="interviewing">Interviewing</option>
+                    <option value="waiting">Waiting</option>
+                    <option value="rejected">Rejected</option>
+                </StatusOption>
                 <ListTextarea name="note" type="text" placeholder="Description" ref={register()}/>
                 <BtnContainer>
                     <CancelBtn onClick={()=>setModal(false)}>Cancel</CancelBtn>

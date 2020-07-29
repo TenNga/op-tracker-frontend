@@ -10,7 +10,7 @@ const NewJobCard = styled.div`
     position: relative;
     margin: 1rem;
     width: 17rem;
-    padding 0.5rem;
+    padding 0.5rem 0.5rem 2rem 0.5rem;
     border: 0.1rem solid black;
     border-radius: 0.6rem;
 `;
@@ -69,6 +69,13 @@ const Cross = styled.div`
     cursor: pointer;
 `;
 
+const Status = styled.div`
+    position: absolute;
+    bottom: 0;
+    left: 1;
+    padding: 0.5rem;
+`;
+
 const NewJob = ({job,deleteJob}) => {
 
     const handleClose = () => {
@@ -97,9 +104,12 @@ const NewJob = ({job,deleteJob}) => {
             <Date>Applied on: {job.date}</Date>
             <Link href={job.link} target="_blank">Link to application</Link>
             <Note>Note: {job.note}</Note>
-            {job.status.toUpperCase() === "REJECTED"? <StatusReject>{job.status.toUpperCase()}</StatusReject> : 
-                job.status.toUpperCase() === "WAITING"? <StatusHold>{job.status.toUpperCase()}</StatusHold> : 
-                    <StatusSuccess>{job.status}</StatusSuccess>}
+            <Status>
+                {job.status.toUpperCase() === "REJECTED"? <StatusReject>{job.status.toUpperCase()}</StatusReject> : 
+                                job.status.toUpperCase() === "WAITING"? <StatusHold>{job.status.toUpperCase()}</StatusHold> : 
+                                    <StatusSuccess>{job.status.toUpperCase()}</StatusSuccess>}
+            </Status>
+            
         </NewJobCard>
     )
 }
