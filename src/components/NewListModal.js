@@ -97,7 +97,7 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
 
     const { register, handleSubmit, errors} = useForm(updateData?{
         defaultValues: updateData
-    }: null);
+    }: "");
 
     const onSubmit = data => {
         if(updateData){
@@ -113,6 +113,7 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
                   const jobsWithoutUpdate = jobs.filter(job => job.id !== updateData.id);
                   setJobs([...jobsWithoutUpdate,updatedData]);
                   setModal(false);
+                  setUpdateData("");
               });
         }
         else {
