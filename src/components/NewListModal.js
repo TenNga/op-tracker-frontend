@@ -101,7 +101,6 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
 
     const onSubmit = data => {
         if(updateData){
-            setUpdateData(data)
             fetch(`http://localhost:3000/jobs/${updateData.id}`, {
                 method: "PATCH",
                 headers: {
@@ -110,7 +109,11 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
                 },
                 body: JSON.stringify(data)
               }).then(resp => resp.json())
-              .then(console.log)
+              .then(updatedData => {
+                  const jobsWithoutUpdate = jobs.filter(job => job.id !== updateData.id);
+                  setJobs([...jobsWithoutUpdate,updatedData]);
+                  setModal(false);
+              });
         }
         else {
             fetch("http://localhost:3000/jobs", {
