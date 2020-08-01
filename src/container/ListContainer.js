@@ -64,8 +64,10 @@ const ListContainer = ({jobs, setJobs}) => {
 
     const [modal, setModal] = useState(false);
     const [filterJobs, setFilterJobs] = useState([]);
+    const [updateData, setUpdateData] = useState("");
 
-    const handleUpdate = () => {
+    const handleUpdate = (job) => {
+        setUpdateData(job)
         setModal(true);
     }
 
@@ -75,7 +77,13 @@ const ListContainer = ({jobs, setJobs}) => {
         if(filterJobs.length > 0)
             return filterJobs.map(job => <NewJob job={job} key={job.id} deleteJob={deleteJob} />)
         else if(jobs)
-            return jobs.map(job => <NewJob job={job} key={job.id} deleteJob={deleteJob} handleUpdate={handleUpdate} bgc={color.mix[parseInt(Math.random()*5)]} />)
+            return jobs.map(job => <NewJob 
+                                        job={job} 
+                                        key={job.id} 
+                                        deleteJob={deleteJob} 
+                                        handleUpdate={handleUpdate} 
+                                        bgc={color.mix[parseInt(Math.random()*5)]} 
+                                    />)
     }
 
     //given the id of the job, delete the job from state
@@ -103,7 +111,13 @@ const ListContainer = ({jobs, setJobs}) => {
 
     return(
         <MainContainer>
-            {modal? <NewListModal setModal={setModal} setJobs={setJobs} jobs={jobs}/> : null}
+            {modal? <NewListModal 
+                            setModal={setModal} 
+                            setJobs={setJobs} 
+                            jobs={jobs} 
+                            updateData={updateData} 
+                            setUpdateData = {setUpdateData}
+                    /> : null}
             <TopSection>
                 <SearchContainer>
                     <SearchInput name="name" type="text" placeholder="Search" 

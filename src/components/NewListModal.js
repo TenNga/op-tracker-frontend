@@ -93,28 +93,44 @@ const CancelBtn = styled.button`
 `;
 
 
-const NewListModal = ({setModal,setJobs,jobs}) => {
+const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
 
-    const { register, handleSubmit, errors} = useForm();
+    const { register, handleSubmit, errors} = useForm(updateData?{
+        defaultValues: updateData
+    }: null);
 
     const onSubmit = data => {
-        fetch("http://localhost:3000/jobs", {
-                method: "POST",
+        if(updateData){
+            setUpdateData(data)
+            fetch(`http://localhost:3000/jobs/${updateData.id}`, {
+                method: "PATCH",
                 headers: {
-                "Content-Type": "application/json",
-                "Accepts": "application/json"
+                  "Content-Type": "application/json",
+                  "Accepts": "application/json"
                 },
-                body: JSON.stringify({...data,user_id: localStorage.getItem("user_id")})
+                body: JSON.stringify(data)
+              }).then(resp => resp.json())
+              .then(console.log)
+        }
+        else {
+            fetch("http://localhost:3000/jobs", {
+                    method: "POST",
+                    headers: {
+                    "Content-Type": "application/json",
+                    "Accepts": "application/json"
+                    },
+                    body: JSON.stringify({...data,user_id: localStorage.getItem("user_id")})
+                    })
+                .then(resp=>resp.json()) //only if you want to get the data back
+                .then(data => {
+                    if(data.errors) 
+                        alert(data.errors);
+                    else{
+                        setJobs([...jobs,data]);
+                        setModal(false);
+                    };
                 })
-            .then(resp=>resp.json()) //only if you want to get the data back
-            .then(data => {
-                if(data.errors) 
-                    alert(data.errors);
-                else{
-                    setJobs([...jobs,data]);
-                    setModal(false);
-                };
-            })
+        }
     }
 
     return(
@@ -133,7 +149,7 @@ const NewListModal = ({setModal,setJobs,jobs}) => {
                 <ListTextarea name="note" type="text" placeholder="Description" ref={register()}/>
                 <BtnContainer>
                     <CancelBtn onClick={()=>setModal(false)}>Cancel</CancelBtn>
-                    <SaveBtn type="submit" value="save" />
+                    <SaveBtn type="submit" value={updateData? "Update" :"save"} />
                 </BtnContainer>
             </NewListForm>
         </ModalContainer>

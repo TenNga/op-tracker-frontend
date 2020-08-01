@@ -100,7 +100,7 @@ const NewJob = ({job,deleteJob,handleUpdate,bgc}) => {
     return(
         <NewJobCard style={{backgroundColor: bgc}}>
             <Title>{job.company}</Title>
-            <Action><IoMdCreate onClick={handleUpdate} size={30}/><IoMdCloseCircleOutline onClick={handleClose} size={30} /></Action>
+            <Action><IoMdCreate onClick={()=>handleUpdate(job)} size={30}/><IoMdCloseCircleOutline onClick={handleClose} size={30} /></Action>
 
             <Role>Role: {job.role} </Role>
             <Date>Applied on: {job.date}</Date>
