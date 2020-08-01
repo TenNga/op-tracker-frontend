@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import styled from 'styled-components';
 
@@ -40,6 +40,29 @@ const Link = styled.a`
 `;
 const Note = styled.p`
     margin-top: 1rem;
+
+    @media only screen and (max-width: 600px) {
+        display: none;
+    }
+`;
+
+const MoreOrLess = styled.p`
+    display: none;
+
+    @media only screen and (max-width: 600px) {
+        display: block;
+        font-weight: bolder;
+        margin-top: 0.2rem;
+        text-decoration: underline;
+}
+`;
+
+const Expand = styled.p`
+    display: none;
+
+    @media only screen and (max-width: 600px) {
+        display: block;
+    }
 `;
 
 const StatusSuccess = styled.h6`
@@ -74,9 +97,15 @@ const Status = styled.div`
     bottom: 0;
     left: 1;
     padding: 0.5rem;
+
+    @media only screen and (max-width: 600px) {
+        padding: 0.1rem;
+    }
 `;
 
 const NewJob = ({job,deleteJob,handleUpdate,bgc}) => {
+
+    const [expand, setExpand] = useState(false);
 
     const handleClose = () => {
         fetch(`http://localhost:3000/jobs/${job.id}`,{
@@ -96,6 +125,8 @@ const NewJob = ({job,deleteJob,handleUpdate,bgc}) => {
         }) 
     }
 
+    const handleExpand = () => setExpand(!expand);
+
 
     return(
         <NewJobCard style={{backgroundColor: bgc}}>
@@ -106,6 +137,8 @@ const NewJob = ({job,deleteJob,handleUpdate,bgc}) => {
             <Date>Applied on: {job.date}</Date>
             <Link href={job.link} target="_blank">Link to application</Link>
             <Note>Note: {job.note}</Note>
+            <MoreOrLess onClick={handleExpand}> {expand? "less" : "more..."} </MoreOrLess>
+            {expand? <Expand>Note: {job.note}</Expand> : null}
             <Status>
                 {job.status.toUpperCase() === "REJECTED"? <StatusReject>{job.status.toUpperCase()}</StatusReject> : 
                                 job.status.toUpperCase() === "WAITING"? <StatusHold>{job.status.toUpperCase()}</StatusHold> : 

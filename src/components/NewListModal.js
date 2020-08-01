@@ -15,6 +15,10 @@ const ModalContainer = styled.div`
     color: ${color.white};
     background-color: rgb(56, 128, 135,0.8);
     z-index: 4;
+
+    @media only screen and (max-width: 600px) {
+        padding: 4rem 0 0 0;
+    }
 `;
 
 const NewListForm = styled.form`
@@ -31,6 +35,10 @@ const ListInput = styled.input`
     border-radius: 0.5rem;
     padding: 0.5rem;
     background-color: ${color.white};
+
+    @media only screen and (max-width: 600px) {
+        width: 80%;
+    }
 `;
 
 const StatusOption = styled.select`
@@ -41,6 +49,10 @@ const StatusOption = styled.select`
     border-radius: 0.5rem;
     padding: 0.5rem;
     background-color: ${color.white};
+
+    @media only screen and (max-width: 600px) {
+        width: 80%;
+    }
 `;
 
 const DateInput = styled.input`
@@ -51,6 +63,10 @@ const DateInput = styled.input`
     border-radius: 0.5rem;
     padding: 0.5rem;
     background-color: ${color.white};
+
+    @media only screen and (max-width: 600px) {
+        width: 80%;
+    }
 `;
 
 const ListTextarea = styled.textarea`
@@ -59,6 +75,10 @@ const ListTextarea = styled.textarea`
     margin: 1rem auto;
     border-radius: 0.5rem;
     padding: 0.5rem;
+
+    @media only screen and (max-width: 600px) {
+        width: 80%;
+    }
 `;
 
 const BtnContainer = styled.div`

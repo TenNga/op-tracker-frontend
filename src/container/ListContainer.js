@@ -14,6 +14,10 @@ const TopSection = styled.div`
     display: flex;
     justify-content: center;
     margin: 2rem auto;
+
+    @media only screen and (max-width: 600px) {
+        margin: 0.3rem 0.5rem;
+    }
 `;
 
 const SearchContainer = styled.div` 
@@ -24,6 +28,8 @@ const SearchContainer = styled.div`
     text-align: left;
     border-radius: 0.5rem;
     border: 0.1rem solid gray;
+
+    
 `;
 
 const SearchInput = styled.input`
@@ -57,7 +63,10 @@ const JobContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
     margin: 1rem 5rem;
-
+    
+    @media only screen and (max-width: 600px) {
+        margin: 0.2rem;
+      }
 `;
 
 const ListContainer = ({jobs, setJobs}) => {

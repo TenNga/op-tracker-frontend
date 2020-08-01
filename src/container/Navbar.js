@@ -8,6 +8,7 @@ const NavBarContainer = styled.div`
     background-color: ${color.primary};
     display: flex;
     justify-content: space-between;
+
 `;
 
 const NavHeader = styled.h1`
@@ -15,10 +16,19 @@ const NavHeader = styled.h1`
     font-size: ${text.heading.xsmall};
     color: ${color.white};
     text-transform: uppercase;
+
+    @media only screen and (max-width: 600px) {
+        margin-left: 0.5rem;
+        font-size: ${text.heading.xxsmall};
+    }
 `;
 
 const Menu = styled.ul`
     display: flex;
+    
+    @media only screen and (max-width: 600px) {
+        display: none;
+      }
 `;
 
 const Text = styled.li`
