@@ -6,9 +6,14 @@ import Login from './container/Login';
 import ListContainer from './container/ListContainer';
 
 import styled from 'styled-components';
+import BottomNavbar from './container/BottomNavbar';
 
 const AppContainer = styled.div`
   font-family: 'Rubik', sans-serif;
+`;
+
+const BottomNav = styled.div`
+
 `;
 
 function App() {
@@ -27,6 +32,9 @@ function App() {
       :
       <ListContainer jobs={jobs} setJobs={setJobs} />
     }
+    <BottomNav>
+      <BottomNavbar />
+    </BottomNav>
 
     </AppContainer>
   );

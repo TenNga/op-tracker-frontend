@@ -9,6 +9,10 @@ const NavBarContainer = styled.div`
     display: flex;
     justify-content: space-between;
 
+    @media only screen and (max-width: 600px) {
+        flex-direction: column;
+      }
+
 `;
 
 const NavHeader = styled.h1`
@@ -25,10 +29,11 @@ const NavHeader = styled.h1`
 
 const Menu = styled.ul`
     display: flex;
-    
+
     @media only screen and (max-width: 600px) {
-        display: none;
-      }
+        justify-content: center;
+    }
+    
 `;
 
 const Text = styled.li`
@@ -36,6 +41,20 @@ const Text = styled.li`
     color: ${color.white};
     font-size: ${text.heading.xxxsmall};
     margin-right: 6rem;
+
+    :hover {
+        text-decoration: underline;
+    }
+
+    @media only screen and (max-width: 600px) {
+        margin-right: 0.5rem;
+        margin-top: 1rem;
+        padding: 0.2rem;
+        background-color: ${color["sky-blue"]};
+        border-radius: 0.5rem;
+        color: ${color.lake};
+        font-size: 1rem;
+      }
 `;
 
 const Navbar = ({setRegister, login}) => {
