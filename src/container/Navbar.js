@@ -41,6 +41,7 @@ const Text = styled.li`
     color: ${color.white};
     font-size: ${text.heading.xxxsmall};
     margin-right: 6rem;
+    cursor: pointer;
 
     :hover {
         text-decoration: underline;
@@ -57,14 +58,21 @@ const Text = styled.li`
       }
 `;
 
-const Navbar = ({setRegister, login}) => {
+const Navbar = ({setRegister, setUser, setJobs}) => {
+    
+    const handleLogOut = () => {
+        setUser("");
+        setJobs("");
+        localStorage.removeItem("user_id")
+    }
+
     return(
         <NavBarContainer>
             <NavHeader>Oppotunity Tracker</NavHeader>
             <Menu>
                     <Text>About Us</Text>
                     {localStorage.getItem("user_id")? 
-                    <Text onClick={()=> localStorage.removeItem("user_id")}>Logout</Text>:
+                    <Text onClick={handleLogOut}>Logout</Text>:
                     <Text onClick={()=> setRegister(true)}>Register</Text> }
             </Menu>
         </NavBarContainer>

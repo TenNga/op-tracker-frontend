@@ -95,8 +95,8 @@ const Login = ({clickRegister, setRegister, setUser}) => {
                 if(data.errors) 
                     alert(data.errors);
                 else{
-                    setUser(data);
                     localStorage.setItem("user_id", data.id);
+                    setUser(data);
                 };
             })
         } else {
@@ -117,6 +117,7 @@ const Login = ({clickRegister, setRegister, setUser}) => {
                 if(data.errors) 
                     alert(data.errors);
                 else{
+                    setRegister(false);
                     setUser(data);
                     localStorage.setItem("user_id", data.id);
                 };
