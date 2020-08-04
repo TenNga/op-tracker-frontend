@@ -13,6 +13,11 @@ const NewJobCard = styled.div`
     padding 0.5rem 0.5rem 2rem 0.5rem;
     border: 0.1rem solid black;
     border-radius: 0.6rem;
+    transition: all 0.3s ease-in-out;
+    
+    :hover{
+        transform: scale(1.03);
+    }
 `;
 
 const Title = styled.h3`

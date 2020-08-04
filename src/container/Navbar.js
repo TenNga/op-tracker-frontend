@@ -70,7 +70,7 @@ const Navbar = ({setRegister, setUser, setJobs}) => {
         <NavBarContainer>
             <NavHeader>Oppotunity Tracker</NavHeader>
             <Menu>
-                    <Text>About Us</Text>
+                    <Text>Mission</Text>
                     {localStorage.getItem("user_id")? 
                     <Text onClick={handleLogOut}>Logout</Text>:
                     <Text onClick={()=> setRegister(true)}>Register</Text> }

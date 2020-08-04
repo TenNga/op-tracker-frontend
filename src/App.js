@@ -1,4 +1,5 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState }  from 'react';
+import { BrowerRouter, Route, Link} from 'react-router-dom';
 import './App.css';
 
 import Navbar from './container/Navbar';
@@ -20,15 +21,21 @@ function App() {
 
 
   return (
-    <AppContainer>
-      <Navbar setRegister={setRegister} setJobs = {setJobs} setUser={setUser} />
-      {!localStorage.getItem("user_id")?
-      <Login clickRegister = {register} setRegister = {setRegister} setUser={setUser} />
-      :
-      <ListContainer jobs={jobs} setJobs={setJobs} />
-    }
+    <BrowerRouter>
+      <AppContainer>
+        <Navbar setRegister={setRegister} setJobs = {setJobs} setUser={setUser} />
+        
+        <Route path="/login" render={()=> <Login clickRegister = {register} setRegister = {setRegister} setUser={setUser} /> } />
+        <Route path="/joblists" render={()=><ListContainer jobs={jobs} setJobs={setJobs} />} />
 
-    </AppContainer>
+        {!localStorage.getItem("user_id")?
+        <Login clickRegister = {register} setRegister = {setRegister} setUser={setUser} />
+        :
+        <ListContainer jobs={jobs} setJobs={setJobs} />
+      }
+
+      </AppContainer>
+    </BrowerRouter>
   );
 }
 
