@@ -95,6 +95,7 @@ const Login = ({clickRegister, setRegister, setUser}) => {
                 if(data.errors) 
                     alert(data.errors);
                 else{
+
                     localStorage.setItem("user_id", data.id);
                     setUser(data);
                 };

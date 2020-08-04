@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link  } from 'react-router-dom';
+
 import styled from 'styled-components';
 import { text, color } from '../theme';
 
@@ -33,7 +35,6 @@ const Menu = styled.ul`
     @media only screen and (max-width: 600px) {
         justify-content: center;
     }
-    
 `;
 
 const Text = styled.li`
@@ -42,10 +43,6 @@ const Text = styled.li`
     font-size: ${text.heading.xxxsmall};
     margin-right: 6rem;
     cursor: pointer;
-
-    :hover {
-        text-decoration: underline;
-    }
 
     @media only screen and (max-width: 600px) {
         margin-right: 0.5rem;
@@ -70,7 +67,7 @@ const Navbar = ({setRegister, setUser, setJobs}) => {
         <NavBarContainer>
             <NavHeader>Oppotunity Tracker</NavHeader>
             <Menu>
-                    <Text>Mission</Text>
+                    <Link to={"/mission"} style={{ textDecoration: 'none' }}><Text>Mission</Text></Link>
                     {localStorage.getItem("user_id")? 
                     <Text onClick={handleLogOut}>Logout</Text>:
                     <Text onClick={()=> setRegister(true)}>Register</Text> }

@@ -1,10 +1,11 @@
 import React, { useState }  from 'react';
-import { BrowerRouter, Route, Link} from 'react-router-dom';
+import { BrowserRouter, Route} from 'react-router-dom';
 import './App.css';
 
 import Navbar from './container/Navbar';
 import Login from './container/Login';
 import ListContainer from './container/ListContainer';
+import About from './container/About';
 
 import styled from 'styled-components';
 
@@ -21,21 +22,20 @@ function App() {
 
 
   return (
-    <BrowerRouter>
+    <BrowserRouter>
       <AppContainer>
         <Navbar setRegister={setRegister} setJobs = {setJobs} setUser={setUser} />
-        
-        <Route path="/login" render={()=> <Login clickRegister = {register} setRegister = {setRegister} setUser={setUser} /> } />
-        <Route path="/joblists" render={()=><ListContainer jobs={jobs} setJobs={setJobs} />} />
 
-        {!localStorage.getItem("user_id")?
-        <Login clickRegister = {register} setRegister = {setRegister} setUser={setUser} />
-        :
-        <ListContainer jobs={jobs} setJobs={setJobs} />
-      }
+        <Route path="/mission" render={()=> <About />} />
+        <Route exact path="/" render={()=>
+          !localStorage.getItem("user_id")?
+            <Login clickRegister = {register} setRegister = {setRegister} setUser={setUser} />
+            :
+            <ListContainer jobs={jobs} setJobs={setJobs} />
+        } />
 
       </AppContainer>
-    </BrowerRouter>
+    </BrowserRouter>
   );
 }
 
