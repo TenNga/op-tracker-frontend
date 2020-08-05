@@ -65,7 +65,7 @@ const Navbar = ({setRegister, setUser, setJobs}) => {
 
     return(
         <NavBarContainer>
-            <NavHeader>Oppotunity Tracker</NavHeader>
+            <Link to={"/"} style={{ textDecoration: 'none' }}><NavHeader>Oppotunity Tracker</NavHeader></Link>
             <Menu>
                     <Link to={"/mission"} style={{ textDecoration: 'none' }}><Text>Mission</Text></Link>
                     {localStorage.getItem("user_id")? 
