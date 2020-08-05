@@ -17,6 +17,12 @@ const WelcomeNote = styled.h1`
     color: ${color.primary};
     text-transform: capitalize;
 `;
+
+const RegisterImg = styled.img`
+    width: 50%;
+    margin-top: 3rem;
+`;
+
 const LoginContainer = styled.div`
    width:20rem;
 `;
@@ -69,6 +75,7 @@ const Text = styled.p`
 
 const LinkSpan = styled.span`
     font-weight: bold;
+    cursor: pointer;
 `;
 
 const ErrorMsg = styled.p`
@@ -128,7 +135,10 @@ const Login = ({clickRegister, setRegister, setUser}) => {
 
     return(
         <MainContainer>
-            <WelcomeNote>one place to tracke all your oppotunity</WelcomeNote>
+            {
+                clickRegister? <RegisterImg src="register.png" alt="computer desk" /> :
+                <WelcomeNote>one place to tracke all your oppotunity</WelcomeNote>
+            }
             <LoginContainer>
 
                 <LoginHeader>{clickRegister? "register" : "Login" }</LoginHeader>
