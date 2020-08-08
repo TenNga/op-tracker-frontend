@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 import { text, color } from '../theme';
@@ -87,9 +87,12 @@ const Login = ({clickRegister, setRegister, setUser}) => {
 
     const { register, handleSubmit, watch, errors} = useForm();
 
+    const [loading,setLoading] = useState(false);
+
     const onSubmit = data => {
         console.log("Register Status", clickRegister)
         if(!clickRegister){
+            setLoading(true);
             fetch("http://localhost:3000/login", {
                 method: "POST",
                 headers: {
@@ -102,7 +105,7 @@ const Login = ({clickRegister, setRegister, setUser}) => {
                 if(data.errors) 
                     alert(data.errors);
                 else{
-
+                    setLoading(false);
                     localStorage.setItem("user_id", data.id);
                     setUser(data);
                 };
@@ -140,7 +143,6 @@ const Login = ({clickRegister, setRegister, setUser}) => {
                 <WelcomeNote>one place to tracke all your oppotunity</WelcomeNote>
             }
             <LoginContainer>
-
                 <LoginHeader>{clickRegister? "register" : "Login" }</LoginHeader>
 
                 <LoginForm onSubmit={handleSubmit(onSubmit)}>
@@ -166,7 +168,7 @@ const Login = ({clickRegister, setRegister, setUser}) => {
                     <LoginSubmit type="submit" value="Sign Up" />
                     <Text>Already have an accout? <LinkSpan onClick={()=> setRegister(false)}>SignIn</LinkSpan></Text>
                     </>:
-                    <LoginSubmit type="submit" value="Login" />}
+                    loading? <LoginSubmit value="Loading" />:<LoginSubmit type="submit" value="Login" />}
                 </LoginForm>
 
             </LoginContainer>
