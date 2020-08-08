@@ -33,6 +33,7 @@ const BackBtn = styled.button`
     color: ${color.white};
     font-weight: bold;
     border-radius: 1rem;
+    cursor: pointer;
 `;
 
 const About = () => {
@@ -47,7 +48,7 @@ const About = () => {
                 <h1>Solution</h1>
                 <Text>Solution for someone who hate/dislike table and row: Oppotunity Tracker, where user will be able to store as much of their job oppotunity and update along the way. </Text>
 
-                <Link to={"/"} style={{ textDecoration: 'none' }}><BackBtn>HOME</BackBtn></Link>
+                <Link to={"/"} style={{ textDecoration: 'none'}}><BackBtn>HOME</BackBtn></Link>
             </AboutDescription>
         </AboutContainer>
     )

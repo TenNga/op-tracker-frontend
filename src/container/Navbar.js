@@ -27,6 +27,10 @@ const NavHeader = styled.h1`
         margin-left: 0.5rem;
         font-size: ${text.heading.xxsmall};
     }
+    @media only screen and (max-width: 835px) {
+        font-size: ${text.heading.xxxsmall};
+    }
+
 `;
 
 const Menu = styled.ul`
@@ -53,6 +57,10 @@ const Text = styled.li`
         color: ${color.lake};
         font-size: 1rem;
       }
+
+    @media only screen and (max-width: 835px) {
+        font-size: 1rem;
+    }
 `;
 
 const Navbar = ({setRegister, setUser, setJobs}) => {

@@ -26,9 +26,17 @@ const Title = styled.h3`
 `;
 const Role = styled.h5`
     margin-top: 1rem;
+
+    @media only screen and (max-width: 835px) {
+        font-size: 0.7rem;
+    }
 `;
 const Date = styled.h5`
     margin-top: 1rem;
+
+    @media only screen and (max-width: 835px) {
+        font-size: 0.7rem;
+    }
 `;
 const Link = styled.a`
     display: inline-block;
@@ -42,12 +50,20 @@ const Link = styled.a`
     border-radius: 1rem;
     margin-top: 1rem;
     cursor: pointer;
+
+    @media only screen and (max-width: 835px) {
+        font-size: 0.8rem;
+    }
 `;
 const Note = styled.p`
     margin-top: 1rem;
 
     @media only screen and (max-width: 600px) {
         display: none;
+    }
+
+    @media only screen and (max-width: 835px) {
+        font-size: 0.8rem;
     }
 `;
 
