@@ -23,7 +23,7 @@ npm install
 
 ## Screenshot
 
-![](mockup.jpg)
+![](mockup.JPG)
 
 ## License
 [KevinKarma](https://www.kevinkarma.com)
