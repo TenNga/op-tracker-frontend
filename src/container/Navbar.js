@@ -78,7 +78,9 @@ const Navbar = ({setRegister, setUser, setJobs}) => {
                     <Link to={"/mission"} style={{ textDecoration: 'none' }}><Text>Mission</Text></Link>
                     {localStorage.getItem("user_id")? 
                     <Text onClick={handleLogOut}>Logout</Text>:
-                    <Text onClick={()=> setRegister(true)}>Register</Text> }
+                    <Link to={"/"} style={{ textDecoration: 'none' }}>
+                        <Text onClick={()=> setRegister(true)}>Register</Text>
+                    </Link> }
             </Menu>
         </NavBarContainer>
     )
