@@ -11,7 +11,8 @@ const NewJobCard = styled.div`
     margin: 1rem;
     width: 17rem;
     padding 0.5rem 0.5rem 2rem 0.5rem;
-    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.35);
+    box-shadow:  20px 20px 60px #d9d9d9, 
+             -20px -20px 40px #ffffff;
     border-radius: 0.6rem;
     transition: all 0.3s ease-in-out;
     
@@ -89,20 +90,20 @@ const Expand = styled.p`
 const StatusSuccess = styled.h6`
     text-align: center;
     font-size: 1rem;
-    color: blue;
+    color: ${color.status.green};
 `;
 
 const StatusReject = styled.h6`
     text-align: center;
     font-size: 1rem;
-    color: red;
+    color: ${color.status.red};
     margin-top: 0.5rem;
 `;
 
 const StatusHold = styled.h6`
     text-align: center;
     font-size: 1rem;
-    color: green;
+    color: ${color.status.blue};
     margin-top: 0.5rem;
 `;
 

@@ -10,9 +10,11 @@ const NavBarContainer = styled.div`
     background-color: ${color.primary};
     display: flex;
     justify-content: space-between;
+    
 
     @media only screen and (max-width: 600px) {
         flex-direction: column;
+        text-align: center;
       }
 
 `;
@@ -51,14 +53,14 @@ const Text = styled.li`
     @media only screen and (max-width: 600px) {
         margin-right: 0.5rem;
         margin-top: 1rem;
-        padding: 0.2rem;
-        background-color: ${color["sky-blue"]};
-        border-radius: 0.5rem;
-        color: ${color.lake};
-        font-size: 1rem;
+        padding: 0.5rem;
+        border-radius: 55px;
+        box-shadow: inset 8px 8px 16px #317177, 
+            inset -8px -8px 16px #3f8f97;
+        font-size: 0.8rem;
       }
 
-    @media only screen and (max-width: 835px) {
+    @media only screen and (max-width: 835px) and (min-width: 600px) {
         font-size: 1rem;
     }
 `;
