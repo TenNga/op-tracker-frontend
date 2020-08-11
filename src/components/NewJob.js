@@ -11,7 +11,7 @@ const NewJobCard = styled.div`
     margin: 1rem;
     width: 17rem;
     padding 0.5rem 0.5rem 2rem 0.5rem;
-    border: 0.1rem solid black;
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.35);
     border-radius: 0.6rem;
     transition: all 0.3s ease-in-out;
     

@@ -26,8 +26,8 @@ const SearchContainer = styled.div`
     height: 2rem;
     padding-left: 0.5rem;
     text-align: left;
-    border-radius: 0.5rem;
-    border: 0.1rem solid gray;
+    border-radius: 0.9rem;
+    border: 0.09rem solid gray;
 
     
 `;
@@ -42,8 +42,9 @@ const SearchInput = styled.input`
 const SearchBtn = styled.h4`
     padding: 0.3rem;
     color: ${color.primary};
-    background-color: ${color["sky-blue"]};
-    margin: auto;
+    border-left: 0.09rem solid gray;
+    margin-right: 0.5rem;
+    cursor: pointer;
 `;
 
 const AddBtn = styled.button`
