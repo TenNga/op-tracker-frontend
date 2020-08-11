@@ -3,6 +3,7 @@ import { BrowserRouter, Route} from 'react-router-dom';
 import './App.css';
 
 import Navbar from './container/Navbar';
+import Footer from './components/Footer';
 import Login from './container/Login';
 import ListContainer from './container/ListContainer';
 import About from './container/About';
@@ -33,7 +34,7 @@ function App() {
             :
             <ListContainer jobs={jobs} setJobs={setJobs} />
         } />
-
+        <Footer />
       </AppContainer>
     </BrowserRouter>
   );

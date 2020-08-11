@@ -7,7 +7,7 @@ import NewJob from '../components/NewJob';
 import { render } from '@testing-library/react';
 
 const MainContainer = styled.div`
-
+    margin-bottom: 4rem;
 `;
 
 const TopSection = styled.div`

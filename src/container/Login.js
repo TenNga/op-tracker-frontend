@@ -140,7 +140,7 @@ const Login = ({clickRegister, setRegister, setUser}) => {
         <MainContainer>
             {
                 clickRegister? <RegisterImg src="register.png" alt="computer desk" /> :
-                <WelcomeNote>one place to tracke all your oppotunity</WelcomeNote>
+                <WelcomeNote>one place to track all your oppotunities</WelcomeNote>
             }
             <LoginContainer>
                 <LoginHeader>{clickRegister? "register" : "Login" }</LoginHeader>
