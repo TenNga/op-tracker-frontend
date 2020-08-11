@@ -121,7 +121,7 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
 
     const onSubmit = data => {
         if(updateData){
-            fetch(`http://localhost:3000/jobs/${updateData.id}`, {
+            fetch(`https://powerful-river-66214.herokuapp.com/jobs/${updateData.id}`, {
                 method: "PATCH",
                 headers: {
                   "Content-Type": "application/json",
@@ -137,7 +137,7 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
               });
         }
         else {
-            fetch("http://localhost:3000/jobs", {
+            fetch("https://powerful-river-66214.herokuapp.com/jobs", {
                     method: "POST",
                     headers: {
                     "Content-Type": "application/json",

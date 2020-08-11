@@ -130,7 +130,7 @@ const NewJob = ({job,deleteJob,handleUpdate,bgc}) => {
     const [expand, setExpand] = useState(false);
 
     const handleClose = () => {
-        fetch(`http://localhost:3000/jobs/${job.id}`,{
+        fetch(`https://powerful-river-66214.herokuapp.com/jobs/${job.id}`,{
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

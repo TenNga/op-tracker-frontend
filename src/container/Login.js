@@ -90,20 +90,25 @@ const Login = ({clickRegister, setRegister, setUser}) => {
     const [loading,setLoading] = useState(false);
 
     const onSubmit = data => {
-        console.log("Register Status", clickRegister)
+        //console.log("Register Status", clickRegister)
         if(!clickRegister){
             setLoading(true);
-            fetch("http://localhost:3000/login", {
+            fetch("https://powerful-river-66214.herokuapp.com/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "Accepts": "application/json",
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify({
+                    username: data.username.toUpperCase(),
+                    password: data.password
+                })
             }).then(resp => resp.json())
             .then(data => {
-                if(data.errors) 
+                if(data.errors) {
+                    setLoading(false);
                     alert(data.errors);
+                }
                 else{
                     setLoading(false);
                     localStorage.setItem("user_id", data.id);
@@ -111,22 +116,24 @@ const Login = ({clickRegister, setRegister, setUser}) => {
                 };
             })
         } else {
-            fetch("http://localhost:3000/users", {
+            fetch("https://powerful-river-66214.herokuapp.com/users", {
                 method: "POST",
                 headers: {
                 "Content-Type": "application/json",
                 "Accepts": "application/json"
                 },
                 body: JSON.stringify({
-                user_name: data.username,
+                user_name: data.username.toUpperCase(),
                 password: data.password,
                 role: data.role
                 })
                 })
             .then(resp=>resp.json()) //only if you want to get the data back
             .then(data => {
-                if(data.errors) 
+                if(data.errors) {
+                    setLoading(false);
                     alert(data.errors);
+                }
                 else{
                     setRegister(false);
                     setUser(data);

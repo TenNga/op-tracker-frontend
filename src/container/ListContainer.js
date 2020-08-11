@@ -112,7 +112,7 @@ const ListContainer = ({jobs, setJobs}) => {
     //componentDidMount, execute only once
     useEffect(()=> {
         if(localStorage.getItem("user_id")){
-            fetch(`http://localhost:3000/users/${localStorage.getItem("user_id")}`)
+            fetch(`https://powerful-river-66214.herokuapp.com/users/${localStorage.getItem("user_id")}`)
             .then(resp => resp.json())
             .then(data=>setJobs(data.jobs))
         }
