@@ -119,6 +119,12 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
         defaultValues: updateData
     }: "");
 
+    //When click Cancel, clear form and close Modal
+    const handleCancel = () => {
+        setUpdateData("");
+        setModal(false);
+    }
+
     const onSubmit = data => {
         if(updateData){
             fetch(`https://powerful-river-66214.herokuapp.com/jobs/${updateData.id}`, {
@@ -172,7 +178,7 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
                 </StatusOption>
                 <ListTextarea name="note" type="text" placeholder="Description" ref={register()}/>
                 <BtnContainer>
-                    <CancelBtn onClick={()=>setModal(false)}>Cancel</CancelBtn>
+                    <CancelBtn onClick={handleCancel}>Cancel</CancelBtn>
                     <SaveBtn type="submit" value={updateData? "Update" :"save"} />
                 </BtnContainer>
             </NewListForm>

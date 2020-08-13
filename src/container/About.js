@@ -49,11 +49,11 @@ const About = () => {
             <Img src="about_img.png" alt="Men Multitask" />
             <AboutDescription>
                 <Heading>Mission</Heading>
-                <Text>Built a plateform where everyone job seeker will enjoy the process of tracking there jobs with a beautiful user interface and user experience.</Text>
+                <Text>Built a platform where every job seeker will enjoy the process of tracking there jobs with a beautiful user interface and user experience.</Text>
                 <Heading>Problem</Heading>
-                <Text>Lets admit it, everyone hate the process of job search just like me and what worst in this process of keeping track of all the job you applied. Yes, you may use Google Excel or Google sheet but for me personally I hate using table and rows where If I need to find something I need to scoll throught all the item.</Text>
+                <Text>Let's admit it, most of us hate the process of job search just like me and what worst part in this is the process of keeping track. Yes, you may use Google Excel or Google sheet but for me personally I hate using table and rows because If I need to find something I need to scoll throught all the item plus it doesn't have any graphics.</Text>
                 <Heading>Solution</Heading>
-                <Text>Solution for someone who hate/dislike table and row: Oppotunity Tracker, where user will be able to store as much of their job oppotunity and update along the way. </Text>
+                <Text>Solution for someone who hate/dislike table and row: Opportunity Tracker, where user will be able to store as much of their job opportunity and update along the way with a beautiful card representation for each jobs. </Text>
 
                 <Link to={"/"} style={{ textDecoration: 'none'}}><BackBtn>HOME</BackBtn></Link>
             </AboutDescription>

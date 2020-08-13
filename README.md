@@ -1,4 +1,4 @@
-# OpTracker ( Oppotunity Tracker)
+# OpTracker ( Opportunity Tracker)
 
 One place to track all your opportunities with a beautiful card UI.
 
@@ -11,8 +11,8 @@ npm install
 ```
 
 ## :dart: Idea
-- Use graphic design instead of table and row to list out your job/oppotunity 
-- Display job/oppotunity in cards
+- Use graphic design instead of table and row to list out your job/opportunity 
+- Display job/opportunity in cards
 
 ## :computer: Usage 
 

@@ -70,6 +70,12 @@ const JobContainer = styled.div`
       }
 `;
 
+const Instruction = styled.h1`
+      width: 100vw;
+      text-align: center;
+      color: ${color.primary};
+`;
+
 const ListContainer = ({jobs, setJobs}) => {
 
     const [modal, setModal] = useState(false);
@@ -141,6 +147,7 @@ const ListContainer = ({jobs, setJobs}) => {
                 </AddBtn>
             </TopSection>
             <JobContainer>
+                {jobs.length < 1? <Instruction>Click on + symbol to add your first jobs</Instruction>: null}
             { renderJobCard() }
             </JobContainer>
         </MainContainer>
