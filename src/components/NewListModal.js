@@ -112,6 +112,11 @@ const CancelBtn = styled.button`
     text-align: center;
 `;
 
+const ErrorMsg = styled.p`
+    text-align: center;
+    color: red;
+`;
+
 
 const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
 
@@ -123,6 +128,10 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
     const handleCancel = () => {
         setUpdateData("");
         setModal(false);
+    }
+
+    const errorMsg =(err) =>{
+        return err && err.type === "required" && <ErrorMsg>Must not be empty!</ErrorMsg>
     }
 
     const onSubmit = data => {
@@ -168,9 +177,13 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
             <h1>New Opportunity</h1>
             <NewListForm onSubmit={handleSubmit(onSubmit)}>
                 <ListInput name="company" type="text" placeholder="Company Name" ref={register({required: true})}/>
+                {errorMsg(errors.company)}
                 <ListInput name="role" type="text" placeholder="Role" ref={register({required: true})}/>
+                {errorMsg(errors.role)}
                 <ListInput name="link" type="text" placeholder="Link to the job description" ref={register({required: true})}/>
+                {errorMsg(errors.link)}
                 <DateInput name="date" type="date" placeholder="Date Applied" ref={register({required: true})}/>
+                {errorMsg(errors.date)}
                 <StatusOption name="status" ref={register}>
                     <option value="interviewing">Interviewing</option>
                     <option value="waiting">Waiting</option>
