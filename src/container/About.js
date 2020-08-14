@@ -8,6 +8,11 @@ const AboutContainer = styled.div`
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+
+    @media only screen and (max-width: 600px) {
+        display: block;
+        padding-bottom: 2rem;
+      }
 `;
 
 const Img = styled.img`
