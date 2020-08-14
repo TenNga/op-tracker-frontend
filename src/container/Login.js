@@ -8,6 +8,10 @@ import { useForm } from "react-hook-form";
 const MainContainer = styled.div`
     display: flex;
     justify-content: space-around;
+
+    @media only screen and (max-width: 600px) {
+        display: block;
+      }
 `;
 
 const WelcomeNote = styled.h1`
@@ -16,6 +20,14 @@ const WelcomeNote = styled.h1`
     margin: 10rem 4rem;
     color: ${color.primary};
     text-transform: capitalize;
+
+    @media only screen and (max-width: 600px) {
+        width: 100%;
+        text-align: center;
+        padding: 0 0.5rem;
+        margin: 2rem 0;
+        font-size: ${text.heading.xxsmall}
+      }
 `;
 
 const RegisterImg = styled.img`
@@ -25,6 +37,10 @@ const RegisterImg = styled.img`
 
 const LoginContainer = styled.div`
    width:20rem;
+
+   @media only screen and (max-width: 600px) {
+    margin: 0 auto;
+  }
 `;
 
 const LoginHeader = styled.h1`
@@ -35,6 +51,11 @@ const LoginHeader = styled.h1`
     border-radius: 7px 7px 0px 0px;
     margin-top: 9rem;
     padding: 0.5rem;
+
+    @media only screen and (max-width: 600px) {
+        margin: 2rem 0.5rem 0 0.5rem;
+        font-size: ${text.heading.xxsmall}
+      }
 `;
 
 const LoginForm = styled.form`
