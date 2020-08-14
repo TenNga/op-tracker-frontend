@@ -33,6 +33,10 @@ const WelcomeNote = styled.h1`
 const RegisterImg = styled.img`
     width: 50%;
     margin-top: 3rem;
+
+    @media only screen and (max-width: 600px) {
+        display: none;
+      }
 `;
 
 const LoginContainer = styled.div`
