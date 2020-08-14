@@ -145,8 +145,13 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
                 body: JSON.stringify(data)
               }).then(resp => resp.json())
               .then(updatedData => {
-                  const jobsWithoutUpdate = jobs.filter(job => job.id !== updateData.id);
-                  setJobs([...jobsWithoutUpdate,updatedData]);
+                  const jobsWithoutUpdate =  jobs.map(job => {
+                    if(job.id !== updatedData.id)
+                        return job;
+                    else
+                        return updatedData;
+                    });
+                  setJobs(jobsWithoutUpdate);
                   setModal(false);
                   setUpdateData("");
               });
