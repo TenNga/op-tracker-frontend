@@ -20,12 +20,16 @@ npm install
 - Enjoy beautiful card design instate of table,row and columns
 - Simple and Easy to use
 
+## Live Demo
 
-## Screenshot & Mockup design
+[OpTracker](https://optracker.kevinkarma.com)
+
+
+## Gif & Mockup design
 
 [MOCKUP](https://www.figma.com/file/V98uR02cKJ5n5AkpJL6hpN/OpTracker?node-id=5%3A32)
 
-![](mockup.JPG)
+![](Demo.gif)
 
 ## License
 [KevinKarma](https://www.kevinkarma.com)
