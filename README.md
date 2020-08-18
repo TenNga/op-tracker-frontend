@@ -1,8 +1,8 @@
-# OpTracker ( Opportunity Tracker)
+#  :chart_with_upwards_trend: OpTracker ( Opportunity Tracker)
 
 One place to track all your opportunities with a beautiful card UI.
 
-## :chart_with_upwards_trend: Installation
+## :gear: Installation
 
 Use the package manager [npm](https://www.npmjs.com/) to run OpTracker.
 
@@ -20,16 +20,16 @@ npm install
 - Enjoy beautiful card design instate of table,row and columns
 - Simple and Easy to use
 
-## Live Demo
+## :mag: Try it out
 
 [OpTracker](https://optracker.kevinkarma.com)
 
 
-## Gif & Mockup design
+## :hammer_and_pick: Gif & Mockup design
 
 [MOCKUP](https://www.figma.com/file/V98uR02cKJ5n5AkpJL6hpN/OpTracker?node-id=5%3A32)
 
 ![](Demo.gif)
 
-## License
+## :briefcase: License
 [KevinKarma](https://www.kevinkarma.com)
