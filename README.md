@@ -20,6 +20,18 @@ npm install
 - Enjoy beautiful card design instate of table,row and columns
 - Simple and Easy to use
 
+## :hammer: Tool Used:
+:headphones: Front End:
+- JavaScript
+- HTML
+- CSS
+- Figma
+- React
+
+:microphone: Back End:
+- Ruby on Rails
+- JSON
+
 ## :mag: Try it out
 
 [OpTracker](https://optracker.kevinkarma.com)
