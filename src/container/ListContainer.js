@@ -146,8 +146,9 @@ const ListContainer = ({jobs, setJobs}) => {
                     +
                 </AddBtn>
             </TopSection>
+
             <JobContainer>
-                {jobs.length < 1? <Instruction>Click on + symbol to add your first jobs</Instruction>: null}
+                {jobs === ""? <Instruction>LOADING...</Instruction> : jobs.length < 1? <Instruction>Click on + symbol to add your first jobs</Instruction>: null}
             { renderJobCard() }
             </JobContainer>
         </MainContainer>
