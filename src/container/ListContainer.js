@@ -76,11 +76,36 @@ const Instruction = styled.h1`
       color: ${color.primary};
 `;
 
+const Loading = styled.div`
+      :before {
+          content: "";
+          box-sizing: border-box;
+          position: absolute;
+          top:50%;
+          left: 50%;
+          height: 60px;
+          width: 60px;
+          margin-top: -30px;
+          marign-left: -30px;
+          border-radius: 50%;
+          border-top: 2px solid ${color.primary};
+          border-right: 2px solid transparent;
+          animation: spinner 0.7s ease infinite;
+      }
+
+      @keyframes spinner {
+          to {
+              transform: rotate(360deg);
+          }
+      }
+`;
+
 const ListContainer = ({jobs, setJobs}) => {
 
     const [modal, setModal] = useState(false);
     const [filterJobs, setFilterJobs] = useState([]);
     const [updateData, setUpdateData] = useState("");
+    const [loading,setLoading] = useState(false)
 
     const handleUpdate = (job) => {
         setUpdateData(job)
@@ -118,9 +143,14 @@ const ListContainer = ({jobs, setJobs}) => {
     //componentDidMount, execute only once
     useEffect(()=> {
         if(localStorage.getItem("user_id")){
+            setLoading(true);
+
             fetch(`https://powerful-river-66214.herokuapp.com/users/${localStorage.getItem("user_id")}`)
             .then(resp => resp.json())
-            .then(data=>setJobs(data.jobs))
+            .then(data=>{
+                setJobs(data.jobs);
+                setLoading(false);
+            })
         }
     }, []);
 
@@ -148,7 +178,7 @@ const ListContainer = ({jobs, setJobs}) => {
             </TopSection>
 
             <JobContainer>
-                {jobs === ""? <Instruction>LOADING...</Instruction> : jobs.length < 1? <Instruction>Click on + symbol to add your first jobs</Instruction>: null}
+                {loading? <Loading></Loading> : jobs.length < 1? <Instruction>Click on + symbol to add your first jobs</Instruction>: null}
             { renderJobCard() }
             </JobContainer>
         </MainContainer>
