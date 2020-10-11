@@ -158,7 +158,7 @@ const NewJob = ({job,deleteJob,handleUpdate,bgc}) => {
             <Role>Role: {job.role} </Role>
             <Date>Applied on: {job.date}</Date>
             <Link href={job.link} target="_blank">Link to application</Link>
-            <Note>Note: {job.note}</Note>
+            {/* <Note>Note: {job.note}</Note> */}
             <MoreOrLess onClick={handleExpand}> {expand? "less" : "more..."} </MoreOrLess>
             {expand? <Expand>Note: {job.note}</Expand> : null}
             <Status>

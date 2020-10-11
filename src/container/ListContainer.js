@@ -83,13 +83,13 @@ const Loading = styled.div`
           position: absolute;
           top:50%;
           left: 50%;
-          height: 60px;
-          width: 60px;
-          margin-top: -30px;
-          marign-left: -30px;
+          height: 100px;
+          width: 100px;
+          margin-top: -50px;
+          marign-left: -50px;
           border-radius: 50%;
-          border-top: 2px solid ${color.primary};
-          border-right: 2px solid transparent;
+          border-top: 10px solid ${color.primary};
+          border-right: 10px solid transparent;
           animation: spinner 0.7s ease infinite;
       }
 
