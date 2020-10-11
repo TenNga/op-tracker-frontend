@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 import {color} from '../theme';
-import { IoMdCloseCircleOutline, IoMdCreate } from "react-icons/io";
+import { IoIosTrash, IoIosResize } from "react-icons/io";
 {/* <ion-icon name="trash-outline"></ion-icon> */}
 
 const NewJobCard = styled.div`
@@ -153,7 +153,10 @@ const NewJob = ({job,deleteJob,handleUpdate,bgc}) => {
     return(
         <NewJobCard style={{backgroundColor: bgc}}>
             <Title>{job.company}</Title>
-            <Action><IoMdCreate onClick={()=>handleUpdate(job)} size={30}/><IoMdCloseCircleOutline onClick={handleClose} size={30} /></Action>
+            <Action>
+                <IoIosResize onClick={()=>handleUpdate(job)} size={30} />
+                <IoIosTrash onClick={handleClose} size={30} />
+            </Action>
 
             <Role>Role: {job.role} </Role>
             <Date>Applied on: {job.date}</Date>
