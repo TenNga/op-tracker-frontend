@@ -58,6 +58,12 @@ const AddBtn = styled.button`
     background-color: ${color.primary};
     color: ${color.white};
     border-style: none;
+
+    @media only screen and (max-width: 600px) {
+        font-size: 1rem;
+        margin-left: 0.5rem;
+        width: 3rem;
+        
 `;
 
 const JobContainer = styled.div`

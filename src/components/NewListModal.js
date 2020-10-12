@@ -9,7 +9,7 @@ const ModalContainer = styled.div`
     width: 100vw;
     height: 100vh;
     padding: 10rem 20rem;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     color: ${color.white};
@@ -72,6 +72,7 @@ const DateInput = styled.input`
 const ListTextarea = styled.textarea`
     background-color: ${color.white};
     width: 50%;
+    height: 8rem;
     margin: 1rem auto;
     border-radius: 0.5rem;
     padding: 0.5rem;
