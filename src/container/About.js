@@ -6,8 +6,11 @@ import { color } from '../theme';
 
 const AboutContainer = styled.div`
     width: 100%;
+    heigth: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    justify-items: center;
 
     @media only screen and (max-width: 600px) {
         display: block;
@@ -23,7 +26,7 @@ const Img = styled.img`
 `;
 
 const AboutDescription = styled.div`
-    margin: 2rem;
+    margin: 10rem 2rem;
 `;
 
 const Heading = styled.h1`
