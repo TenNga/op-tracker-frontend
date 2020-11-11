@@ -109,7 +109,7 @@ const Loading = styled.div`
 const ListContainer = ({jobs, setJobs}) => {
 
     const [modal, setModal] = useState(false);
-    const [filterJobs, setFilterJobs] = useState([]);
+    const [filterJobs, setFilterJobs] = useState(null);
     const [updateData, setUpdateData] = useState("");
     const [loading,setLoading] = useState(false)
 
@@ -121,7 +121,7 @@ const ListContainer = ({jobs, setJobs}) => {
 
     const renderJobCard = () => {
         //if no search result then display all the jobs
-        if(filterJobs.length > 0)
+        if(filterJobs)
             return filterJobs.map(job => <NewJob job={job} key={job.id} deleteJob={deleteJob} />)
         else if(jobs)
             return jobs.map(job => <NewJob 
@@ -141,7 +141,7 @@ const ListContainer = ({jobs, setJobs}) => {
 
     //execute this function on every changes
     const handleOnChange= e => {
-        console.log("value: ", e.target.value);
+        // console.log("value: ", e.target.value);
         const result = jobs.filter(job => job.company.toUpperCase().includes(e.target.value.toUpperCase()));
         setFilterJobs(result);
     }

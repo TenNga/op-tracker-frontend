@@ -22,10 +22,7 @@ const WelcomeNote = styled.h1`
     text-transform: capitalize;
 
     @media only screen and (max-width: 600px) {
-        width: 100%;
-        text-align: center;
-        padding: 0 0.5rem;
-        margin: 2rem 0;
+         
         font-size: ${text.heading.xxsmall}
       }
 `;

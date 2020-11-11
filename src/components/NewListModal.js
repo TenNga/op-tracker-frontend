@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {color} from "../theme";
 
 import styled from 'styled-components';
@@ -124,6 +124,7 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
     const { register, handleSubmit, errors} = useForm(updateData?{
         defaultValues: updateData
     }: "");
+    const [loading,setLoading] = useState(false)
 
     //When click Cancel, clear form and close Modal
     const handleCancel = () => {
@@ -137,6 +138,7 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
 
     const onSubmit = data => {
         if(updateData){
+            setLoading(true);
             fetch(`https://powerful-river-66214.herokuapp.com/jobs/${updateData.id}`, {
                 method: "PATCH",
                 headers: {
@@ -155,9 +157,11 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
                   setJobs(jobsWithoutUpdate);
                   setModal(false);
                   setUpdateData("");
+                  setLoading(false);
               });
         }
         else {
+            setLoading(true);
             fetch("https://powerful-river-66214.herokuapp.com/jobs", {
                     method: "POST",
                     headers: {
@@ -174,6 +178,7 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
                         setJobs([...jobs,data]);
                         setModal(false);
                     };
+                    setLoading(false);
                 })
         }
     }
@@ -198,7 +203,7 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
                 <ListTextarea name="note" type="text" placeholder="Description" ref={register()}/>
                 <BtnContainer>
                     <CancelBtn onClick={handleCancel}>Cancel</CancelBtn>
-                    <SaveBtn type="submit" value={updateData? "Update" :"save"} />
+                    <SaveBtn type="submit" value={loading? "Loading" :updateData? "Update" :"save"} />
                 </BtnContainer>
             </NewListForm>
         </ModalContainer>
