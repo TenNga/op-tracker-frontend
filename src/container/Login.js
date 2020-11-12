@@ -7,7 +7,9 @@ import { useForm } from "react-hook-form";
 
 const MainContainer = styled.div`
     display: flex;
+    width:100%;
     justify-content: space-around;
+    justify-items: center;
 
     @media only screen and (max-width: 600px) {
         display: block;
@@ -22,8 +24,13 @@ const WelcomeNote = styled.h1`
     text-transform: capitalize;
 
     @media only screen and (max-width: 600px) {
-         
-        font-size: ${text.heading.xxsmall}
+        width: 80%;
+         margin: 1rem auto;
+         text-align: center;
+        font-size: ${text.heading.small}
+      }
+      @media only screen and (min-width: 600px) {
+        display: none;
       }
 `;
 
@@ -105,6 +112,17 @@ const ErrorMsg = styled.p`
     color: red;
 `;
 
+const OpTrackerVideo = styled.video`
+      border-radius: 8px;
+      margin-top: 5rem;
+      width: 1020px;
+      height: 500px;
+
+      @media only screen and (max-width: 600px) {
+        display: none;
+      }
+`;
+
 const Login = ({clickRegister, setRegister, setUser}) => {
 
     const { register, handleSubmit, watch, errors} = useForm();
@@ -169,7 +187,12 @@ const Login = ({clickRegister, setRegister, setUser}) => {
         <MainContainer>
             {
                 clickRegister? <RegisterImg src="register.png" alt="computer desk" /> :
-                <WelcomeNote>one place to track all your opportunities</WelcomeNote>
+                <>
+                    <WelcomeNote>one place to track all your opportunities</WelcomeNote>
+                    <OpTrackerVideo  muted autoPlay loop>
+                        <source src="OpTracker_intro.mp4" type="video/mp4" />
+                    </OpTrackerVideo>
+                </>
             }
             <LoginContainer>
                 <LoginHeader>{clickRegister? "register" : "Login" }</LoginHeader>
