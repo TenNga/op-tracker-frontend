@@ -17,21 +17,17 @@ const MainContainer = styled.div`
 `;
 
 const WelcomeNote = styled.h1`
-    width: 50%;
+    width: 60vw;
     font-size: ${text.heading.xxlarge};
-    margin: 10rem 4rem;
+    justify-content: center;
+    justify-items: center;
+    padding: 5vw 0;
     color: ${color.primary};
     text-transform: capitalize;
+    border: 1px solid ${color.primary};
+    border-radius: 8px 0 8px 8px;
 
-    @media only screen and (max-width: 600px) {
-        width: 80%;
-         margin: 1rem auto;
-         text-align: center;
-        font-size: ${text.heading.small}
-      }
-      @media only screen and (min-width: 600px) {
-        display: none;
-      }
+   
 `;
 
 const RegisterImg = styled.img`
@@ -113,14 +109,46 @@ const ErrorMsg = styled.p`
 `;
 
 const OpTrackerVideo = styled.video`
-      border-radius: 8px;
-      margin-top: 5rem;
-      width: 1020px;
-      height: 500px;
+      border-radius: 0 0 8px 8px;
+    //   margin-top: 5rem;
+      width: 60vw;
+      height: auto;
 
-      @media only screen and (max-width: 600px) {
+      @media only screen and (max-width: 735px) {
         display: none;
       }
+`;
+
+const WelcomeVideoContainer = styled.div`
+      display: block;
+      margin-top: 5rem;
+
+      @media only screen and (max-width: 735px) {
+        display: none;
+      }
+`;
+
+const TabBtn = styled.button`
+      display: block;
+      margin-left: 15px;
+      padding: 5px;
+      background-color: ${color.primary};
+      color: ${color.white};
+      border: none;
+      border-radius: 8px 8px 0 0;
+      font-size: ${text.heading.xxsmall};
+
+      &:hover {  
+          background-color: ${color["sky-blue"]};
+          color: ${color.primary};
+        }
+`;
+
+const TabBtnContainer = styled.div`
+      display: flex;
+      justify-content: flex-end;
+      
+      border-radius: 8px 8px 0 0;
 `;
 
 const Login = ({clickRegister, setRegister, setUser}) => {
@@ -128,6 +156,7 @@ const Login = ({clickRegister, setRegister, setUser}) => {
     const { register, handleSubmit, watch, errors} = useForm();
 
     const [loading,setLoading] = useState(false);
+    const [tabValue,setTabValue] = useState("welcome");
 
     const onSubmit = data => {
         //console.log("Register Status", clickRegister)
@@ -187,12 +216,18 @@ const Login = ({clickRegister, setRegister, setUser}) => {
         <MainContainer>
             {
                 clickRegister? <RegisterImg src="register.png" alt="computer desk" /> :
-                <>
-                    <WelcomeNote>one place to track all your opportunities</WelcomeNote>
+                <WelcomeVideoContainer>
+                    <TabBtnContainer>
+                        <TabBtn onClick={()=>setTabValue("welcome")}>Welcome</TabBtn>
+                        <TabBtn onClick={()=>setTabValue("demo")}>Demo</TabBtn>
+                    </TabBtnContainer>
+                    {tabValue === "welcome"? <WelcomeNote>one place to track all your opportunities</WelcomeNote>:
                     <OpTrackerVideo  muted autoPlay loop>
                         <source src="OpTracker_intro.mp4" type="video/mp4" />
                     </OpTrackerVideo>
-                </>
+                    }
+                    
+                </WelcomeVideoContainer>
             }
             <LoginContainer>
                 <LoginHeader>{clickRegister? "register" : "Login" }</LoginHeader>
