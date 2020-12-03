@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 import { text, color } from '../theme';
-
 import { useForm } from "react-hook-form";
+
+import WelcomeVideoContainer from './WelcomeVideoContainer';
 
 const MainContainer = styled.div`
     display: flex;
@@ -14,20 +15,6 @@ const MainContainer = styled.div`
     @media only screen and (max-width: 600px) {
         display: block;
       }
-`;
-
-const WelcomeNote = styled.h1`
-    width: 60vw;
-    font-size: ${text.heading.xxlarge};
-    justify-content: center;
-    justify-items: center;
-    padding: 5vw 0;
-    color: ${color.primary};
-    text-transform: capitalize;
-    border: 1px solid ${color.primary};
-    border-radius: 8px 0 8px 8px;
-
-   
 `;
 
 const RegisterImg = styled.img`
@@ -119,37 +106,6 @@ const OpTrackerVideo = styled.video`
       }
 `;
 
-const WelcomeVideoContainer = styled.div`
-      display: block;
-      margin-top: 5rem;
-
-      @media only screen and (max-width: 735px) {
-        display: none;
-      }
-`;
-
-const TabBtn = styled.button`
-      display: block;
-      margin-left: 15px;
-      padding: 5px;
-      background-color: ${color.primary};
-      color: ${color.white};
-      border: none;
-      border-radius: 8px 8px 0 0;
-      font-size: ${text.heading.xxsmall};
-
-      &:hover {  
-          background-color: ${color["sky-blue"]};
-          color: ${color.primary};
-        }
-`;
-
-const TabBtnContainer = styled.div`
-      display: flex;
-      justify-content: flex-end;
-      
-      border-radius: 8px 8px 0 0;
-`;
 
 const Login = ({clickRegister, setRegister, setUser}) => {
 
@@ -216,18 +172,7 @@ const Login = ({clickRegister, setRegister, setUser}) => {
         <MainContainer>
             {
                 clickRegister? <RegisterImg src="register.png" alt="computer desk" /> :
-                <WelcomeVideoContainer>
-                    <TabBtnContainer>
-                        <TabBtn onClick={()=>setTabValue("welcome")}>Welcome</TabBtn>
-                        <TabBtn onClick={()=>setTabValue("demo")}>Demo</TabBtn>
-                    </TabBtnContainer>
-                    {tabValue === "welcome"? <WelcomeNote>one place to track all your opportunities</WelcomeNote>:
-                    <OpTrackerVideo  muted autoPlay loop>
-                        <source src="OpTracker_intro.mp4" type="video/mp4" />
-                    </OpTrackerVideo>
-                    }
-                    
-                </WelcomeVideoContainer>
+                <WelcomeVideoContainer/>
             }
             <LoginContainer>
                 <LoginHeader>{clickRegister? "register" : "Login" }</LoginHeader>
