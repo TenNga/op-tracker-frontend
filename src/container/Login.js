@@ -95,24 +95,12 @@ const ErrorMsg = styled.p`
     color: red;
 `;
 
-const OpTrackerVideo = styled.video`
-      border-radius: 0 0 8px 8px;
-    //   margin-top: 5rem;
-      width: 60vw;
-      height: auto;
-
-      @media only screen and (max-width: 735px) {
-        display: none;
-      }
-`;
-
 
 const Login = ({clickRegister, setRegister, setUser}) => {
 
     const { register, handleSubmit, watch, errors} = useForm();
 
     const [loading,setLoading] = useState(false);
-    const [tabValue,setTabValue] = useState("welcome");
 
     const onSubmit = data => {
         //console.log("Register Status", clickRegister)
