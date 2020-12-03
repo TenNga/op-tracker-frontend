@@ -74,7 +74,6 @@ const WelcomeVideoContainer = () => {
                         <source src="OpTracker_intro.mp4" type="video/mp4" />
                     </OpTrackerVideo>
                     }
-                    
         </WelcomeVideoMainContainer>
     )
 }
