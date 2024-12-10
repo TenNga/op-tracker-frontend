@@ -44,4 +44,4 @@ npm install
 ![](Demo.gif)
 
 ## :briefcase: License
-[KevinKarma](https://www.kevinkarma.com)
+[KevinKarma](https://www.kevinkarma.me)
