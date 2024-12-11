@@ -32,11 +32,6 @@ npm install
 - Ruby on Rails
 - JSON
 
-## :mag: Try it out
-
-[OpTracker](https://optracker.kevinkarma.com)
-
-
 ## :hammer_and_pick: Gif & Mockup design
 
 [MOCKUP](https://www.figma.com/file/V98uR02cKJ5n5AkpJL6hpN/OpTracker?node-id=5%3A32)
@@ -44,4 +39,4 @@ npm install
 ![](Demo.gif)
 
 ## :briefcase: License
-[KevinKarma](https://www.kevinkarma.com)
+[KevinKarma](https://www.kevinkarma.me)
