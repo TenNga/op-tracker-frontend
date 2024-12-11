@@ -5,6 +5,7 @@ import { text, color } from '../theme';
 import { useForm } from "react-hook-form";
 
 import WelcomeVideoContainer from './WelcomeVideoContainer';
+import { createUser } from '../lib/actions/user.actions';
 
 const MainContainer = styled.div`
     display: flex;
@@ -102,57 +103,93 @@ const Login = ({clickRegister, setRegister, setUser}) => {
 
     const [loading,setLoading] = useState(false);
 
-    const onSubmit = data => {
-        //console.log("Register Status", clickRegister)
-        if(!clickRegister){
+    const onSubmit = async (data) => {
+        console.log("Register Status", clickRegister)
             setLoading(true);
-            fetch("https://powerful-river-66214.herokuapp.com/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accepts": "application/json",
-                },
-                body: JSON.stringify({
-                    username: data.username.toUpperCase(),
+        if(!clickRegister){
+            try {
+                const userData = { 
+                    email: data.username.toUpperCase(),
                     password: data.password
-                })
-            }).then(resp => resp.json())
-            .then(data => {
-                if(data.errors) {
+                }
+
+                const user = await createUser(userData);
+                setLoading(false);
+                localStorage.setItem("user_id", user.$id);
+                setUser(user);
+            } catch (error) {
+                console.log("ERROR creating user!");
                     setLoading(false);
                     alert(data.errors);
-                }
-                else{
-                    setLoading(false);
-                    localStorage.setItem("user_id", data.id);
-                    setUser(data);
-                };
-            })
+            }
+
+            // fetch("https://powerful-river-66214.herokuapp.com/login", {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //         "Accepts": "application/json",
+            //     },
+            //     body: JSON.stringify({
+            //         username: data.username.toUpperCase(),
+            //         password: data.password
+            //     })
+            // }).then(resp => resp.json())
+            // .then(data => {
+            //     if(data.errors) {
+            //         setLoading(false);
+            //         alert(data.errors);
+            //     }
+            //     else{
+            //         setLoading(false);
+            //         localStorage.setItem("user_id", data.id);
+            //         setUser(data);
+            //     };
+            // })
         } else {
-            fetch("https://powerful-river-66214.herokuapp.com/users", {
-                method: "POST",
-                headers: {
-                "Content-Type": "application/json",
-                "Accepts": "application/json"
-                },
-                body: JSON.stringify({
-                user_name: data.username.toUpperCase(),
-                password: data.password,
-                role: data.role
-                })
-                })
-            .then(resp=>resp.json()) //only if you want to get the data back
-            .then(data => {
-                if(data.errors) {
-                    setLoading(false);
-                    alert(data.errors);
+            try {
+                console.log("inside try")
+                const userData = { 
+                    email: data.username.toUpperCase(),
+                    password: data.password,
+                    role: data.role
                 }
-                else{
+
+                const user = await createUser(userData);
+                
+                if(user){
                     setRegister(false);
-                    setUser(data);
-                    localStorage.setItem("user_id", data.id);
-                };
-            })
+                    setUser(user);
+                    localStorage.setItem("user_id", user.$id);
+                }
+            } catch (error) {
+                console.log("ERROR creating user!");
+                    setLoading(false);
+                    alert(error.message);
+            }
+            // fetch("https://powerful-river-66214.herokuapp.com/users", {
+            //     method: "POST",
+            //     headers: {
+            //     "Content-Type": "application/json",
+            //     "Accepts": "application/json"
+            //     },
+            //     body: JSON.stringify({
+            //     email: data.username.toUpperCase(),
+            //     password: data.password,
+            //     role: data.role
+            //     })
+            //     })
+            // .then(resp=>resp.json()) //only if you want to get the data back
+            // .then(data => {
+            //     if(data.errors) {
+            //         setLoading(false);
+            //         alert(data.errors);
+            //     }
+            //     else{
+            //         setRegister(false);
+            //         setUser(data);
+            //         localStorage.setItem("user_id", data.id);
+            //     };
+            // })
         }
     };
 

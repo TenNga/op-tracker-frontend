@@ -104,7 +104,6 @@ const ListContainer = ({jobs, setJobs}) => {
         }
     }, []);
 
-
     return(
         <MainContainer>
             {modal? <NewListModal 
