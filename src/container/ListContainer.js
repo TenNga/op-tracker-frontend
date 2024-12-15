@@ -5,6 +5,7 @@ import {color} from '../theme';
 import NewListModal from '../components/NewListModal';
 import NewJob from '../components/NewJob';
 import SearchBar from '../components/SearchBar';
+import { getJobs } from '../lib/actions/jobs.actions';
 
 const MainContainer = styled.div`
     margin-bottom: 4rem;
@@ -70,7 +71,7 @@ const ListContainer = ({jobs, setJobs}) => {
         else if(jobs)
             return jobs.map(job => <NewJob 
                                         job={job} 
-                                        key={job.id} 
+                                        key={job.$id} 
                                         deleteJob={deleteJob} 
                                         handleUpdate={handleUpdate} 
                                         bgc={color.mix[parseInt(Math.random()*5)]} 
@@ -92,16 +93,18 @@ const ListContainer = ({jobs, setJobs}) => {
 
     //componentDidMount, execute only once
     useEffect(()=> {
-        if(localStorage.getItem("user_id")){
             setLoading(true);
-
-            fetch(`https://powerful-river-66214.herokuapp.com/users/${localStorage.getItem("user_id")}`)
-            .then(resp => resp.json())
-            .then(data=>{
-                setJobs(data.jobs);
+        const fetchJobs = async () => {
+            if(localStorage.getItem("user_id")){
+                setLoading(true);
+                const jobs = await getJobs();
+                console.log(jobs);
+                setJobs(jobs);
                 setLoading(false);
-            })
-        }
+            }
+        };
+
+        fetchJobs();
     }, []);
 
     return(
