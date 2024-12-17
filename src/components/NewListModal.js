@@ -3,6 +3,7 @@ import {color} from "../theme";
 
 import styled from 'styled-components';
 import { useForm } from "react-hook-form";
+import { createJob } from '../lib/actions/jobs.actions';
 
 const ModalContainer = styled.div`
     text-align: center;
@@ -136,7 +137,7 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
         return err && err.type === "required" && <ErrorMsg>Must not be empty!</ErrorMsg>
     }
 
-    const onSubmit = data => {
+    const onSubmit = async(data) => {
         if(updateData){
             setLoading(true);
             fetch(`https://powerful-river-66214.herokuapp.com/jobs/${updateData.id}`, {
@@ -162,24 +163,31 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
         }
         else {
             setLoading(true);
-            fetch("https://powerful-river-66214.herokuapp.com/jobs", {
-                    method: "POST",
-                    headers: {
-                    "Content-Type": "application/json",
-                    "Accepts": "application/json"
-                    },
-                    body: JSON.stringify({...data,user_id: localStorage.getItem("user_id")})
-                    })
-                .then(resp=>resp.json()) //only if you want to get the data back
-                .then(data => {
-                    if(data.errors) 
-                        alert(data.errors);
-                    else{
-                        setJobs([...jobs,data]);
-                        setModal(false);
-                    };
-                    setLoading(false);
-                })
+            const newJob = {...data,user_id: localStorage.getItem("user_id")};
+            const newJobCreated = await createJob(newJob)
+            if(newJobCreated){
+                setJobs([...jobs,data]);
+                setModal(false);
+                setLoading(false);
+            }
+            // fetch("https://powerful-river-66214.herokuapp.com/jobs", {
+            //         method: "POST",
+            //         headers: {
+            //         "Content-Type": "application/json",
+            //         "Accepts": "application/json"
+            //         },
+            //         body: JSON.stringify({...data,user_id: localStorage.getItem("user_id")})
+            //         })
+            //     .then(resp=>resp.json()) //only if you want to get the data back
+            //     .then(data => {
+            //         if(data.errors) 
+            //             alert(data.errors);
+            //         else{
+            //             setJobs([...jobs,data]);
+            //             setModal(false);
+            //         };
+            //         setLoading(false);
+            //     })
         }
     }
 
