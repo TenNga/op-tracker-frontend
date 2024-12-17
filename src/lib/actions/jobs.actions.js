@@ -32,3 +32,20 @@ export const createJob = async (job) => {
         console.log("Error creating job: ",error)
     }
 }
+
+export const updateJob = async (job) => {
+    try {
+        const newJob = await database.updateDocument(
+            REACT_APP_DATABASE_ID,
+            REACT_APP_JOBS_COLLECTION_ID,
+            ID.unique(),
+            {
+                ...job
+            }
+        )
+
+        return JSON.parse(JSON.stringify(newJob));
+    } catch (error) {
+        console.log("Error creating job: ",error)
+    }
+}

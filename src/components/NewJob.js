@@ -10,7 +10,7 @@ const NewJobCard = styled.div`
     position: relative;
     margin: 1rem;
     width: 17rem;
-    padding 0.5rem 0.5rem 2rem 0.5rem;
+    padding 20px 10px;
     box-shadow:  20px 20px 60px #d9d9d9, 
              -20px -20px 40px #ffffff;
     border-radius: 0.6rem;
@@ -109,15 +109,16 @@ const StatusHold = styled.h6`
 
 const Action = styled.div`
     position: absolute;
-    right: 0rem;
-    top: 0rem;
+    right: 10px;
+    top: 10px;
     cursor: pointer;
 `;
 
 const Status = styled.div`
-    position: absolute;
-    bottom: 0;
-    left: 1;
+    // position: absolute;
+    // bottom: 0;
+    // left: 1;
+    text-align: left;
     padding: 0.5rem;
 
     @media only screen and (max-width: 600px) {

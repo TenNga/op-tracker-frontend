@@ -9,7 +9,7 @@ const ModalContainer = styled.div`
     text-align: center;
     width: 100vw;
     height: 100vh;
-    padding: 10rem 20rem;
+    padding: 10rem 8rem;
     position: fixed;
     top: 0;
     left: 0;
@@ -166,30 +166,14 @@ const NewListModal = ({setModal,setJobs,jobs, updateData,setUpdateData}) => {
             const newJob = {...data,user_id: localStorage.getItem("user_id")};
             const newJobCreated = await createJob(newJob)
             if(newJobCreated){
-                setJobs([...jobs,data]);
+                setJobs([...jobs,newJobCreated]);
                 setModal(false);
                 setLoading(false);
             }
-            // fetch("https://powerful-river-66214.herokuapp.com/jobs", {
-            //         method: "POST",
-            //         headers: {
-            //         "Content-Type": "application/json",
-            //         "Accepts": "application/json"
-            //         },
-            //         body: JSON.stringify({...data,user_id: localStorage.getItem("user_id")})
-            //         })
-            //     .then(resp=>resp.json()) //only if you want to get the data back
-            //     .then(data => {
-            //         if(data.errors) 
-            //             alert(data.errors);
-            //         else{
-            //             setJobs([...jobs,data]);
-            //             setModal(false);
-            //         };
-            //         setLoading(false);
-            //     })
         }
     }
+
+    
 
     return(
         <ModalContainer>
