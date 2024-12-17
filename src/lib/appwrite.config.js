@@ -10,7 +10,6 @@ export const {
 } = process.env
 
 const client = new sdk.Client();
-console.log("endpoint: ",ENDPOINT)
 client.setEndpoint(ENDPOINT).setProject(REACT_APP_PROJECT_ID).setKey(REACT_APP_API_KEY);
 
 export const database = new sdk.Databases(client);

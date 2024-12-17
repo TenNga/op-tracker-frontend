@@ -99,7 +99,7 @@ const ListContainer = ({jobs, setJobs}) => {
                 setLoading(true);
                 const jobs = await getJobs();
                 console.log(jobs);
-                setJobs(jobs);
+                jobs && setJobs(jobs);
                 setLoading(false);
             }
         };
